@@ -1,0 +1,11 @@
+Task: cnv_regions
+Layer: core
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+
+Step: s05
+Script: genomics/05_run_cnv_alteration_regions.R
+manifest: SET_ME/cnv_c1c4_sample_manifest.tsv
+thresholded_cnv: SET_ME/TCGA_PANCAN_CopyNumber_Gistic2_all_thresholded.gz
+gene_coordinates: SET_ME/probeMap_gencode.v23.annotation.gene.probemap
+cytoband: SET_ME/cytoBand.txt.gz
+output_dir: @root/cnv_regions/s05

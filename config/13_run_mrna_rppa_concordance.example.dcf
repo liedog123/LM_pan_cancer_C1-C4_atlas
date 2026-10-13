@@ -1,9 +1,0 @@
-mrna_model_dir: SET_ME_mrna_model_dir
-mrna_recurrence: SET_ME_mrna_recurrence
-mrna_display: SET_ME_mrna_display
-rppa_within: SET_ME_rppa_within
-rppa_recurrence: SET_ME_rppa_recurrence
-rppa_display: SET_ME_rppa_display
-cancer_gate: SET_ME_cancer_gate
-antibody_dictionary: ../references/rppa_antibody_dictionary_frozen_v0.2_20260723.tsv
-output_dir: SET_ME_output_dir

@@ -1,8 +1,0 @@
-model_dir: SET_ME_model_dir
-definition_registry: ../references/stage3_definition_gene_registry_v0.1_20260723.tsv
-immune_registry: ../references/candidate_immune_gene_set_registry.tsv
-immune_membership: ../references/candidate_immune_gene_sets_long.tsv
-lm12_membership: SET_ME_lm12_membership
-hallmark_gmt: SET_ME_hallmark_gmt
-edge_id: E1
-output_dir: SET_ME_output_dir

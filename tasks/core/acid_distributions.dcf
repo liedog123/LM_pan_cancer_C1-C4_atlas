@@ -1,0 +1,15 @@
+Task: acid_distributions
+Layer: core
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+
+Step: s05
+Script: acid_ag_preprocessing/05_score_integrated_acid_matrix.R
+clinical_groups: SET_ME/clinical_data_cluster_list.rdata
+final_genes: SET_ME/final_selected_genes.rdata
+integrated_expression: SET_ME/EB++AdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena.gz
+output_dir: @root/acid_distributions/s05
+
+Step: s06
+Script: acid_ag_preprocessing/06_compare_acid_tumor_normal.R
+output_dir: @root/acid_distributions/s06
+validation_data: SET_ME/clinical_validation_data.Rdata

@@ -1,0 +1,9 @@
+Task: somatic_mutations
+Layer: core
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+
+Step: s01
+Script: genomics/01_run_mutation_c1c4.R
+callable_dir: SET_ME/accepted_callable
+mutation_events: SET_ME/mutation.gz
+output_dir: @root/somatic_mutations/s01

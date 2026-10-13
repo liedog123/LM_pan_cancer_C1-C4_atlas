@@ -1,8 +1,0 @@
-# Paths resolve relative to this DCF. Replace every SET_ME value.
-# output_dir must be an independent absent or empty directory.
-patient_manifest: SET_ME/patient_manifest
-lncrna_registry: ../references/lncrna_grch38_113_annotation_registry_v0.2_20260723.tsv
-recurrent_candidates: SET_ME/recurrent_candidates
-mrna_rdata: SET_ME/mrna_rdata
-lncrna_dir: SET_ME/lncrna_dir
-output_dir: SET_ME/output_dir

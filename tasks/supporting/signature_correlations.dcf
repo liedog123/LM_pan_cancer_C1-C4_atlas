@@ -1,0 +1,20 @@
+Task: signature_correlations
+Layer: supporting
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+Input-final_genes: SET_ME/formal/Fig1A_signature_genes.tsv
+Input-tumor_scores: SET_ME/intermediates/tumor_diver_gsva_list.rdata
+Input-tpm_root: SET_ME/tpm
+
+Step: s02
+Script: signature_selection/02_correlate_final_nine_tumor_program.R
+final_genes: @input/final_genes
+tumor_scores: @input/tumor_scores
+tpm_root: @input/tpm_root
+output_dir: @root/signature_correlations/s02
+
+Step: s03
+Script: signature_selection/03_correlate_final_nine_gene_pairs.R
+final_genes: @input/final_genes
+tumor_scores: @input/tumor_scores
+tpm_root: @input/tpm_root
+output_dir: @root/signature_correlations/s03

@@ -1,0 +1,17 @@
+Task: lm12_definition
+Layer: definitions
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+
+Step: s01
+Script: lm12_construction/01_build_votes_and_stable_genes.R
+gsea_results_dir: SET_ME/formal_gsea/individual_full_results
+output_dir: @root/lm12_definition/s01
+
+Step: s02
+Script: lm12_construction/02_finalize_lm12_gene_sets.R
+output_dir: @root/lm12_definition/s02
+all_votes: @s01/all_pathway_votes_original_like.tsv
+gene_summary: @s01/original_like_gene_set_summary.tsv
+gene_long: @s01/original_like_gene_sets_long.tsv
+candidate_terms: SET_ME_SUPPLEMENTARY_DIR/curated_candidate_pathway_terms.tsv
+family_dictionary: SET_ME_SUPPLEMENTARY_DIR/candidate_pathway_family_dictionary.tsv

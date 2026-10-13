@@ -1,4 +1,0 @@
-processed_data: SET_ME/processed/pancancer_full_data_list.rdata
-lm12_manifest: SET_ME/definitions/lm_imm_12_manifest.tsv
-lm12_genes: SET_ME/definitions/lm_imm_12_gene_sets_long.tsv
-output_dir: SET_ME/new_outputs/shared_states

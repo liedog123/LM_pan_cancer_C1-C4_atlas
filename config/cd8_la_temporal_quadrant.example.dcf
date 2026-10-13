@@ -1,3 +1,0 @@
-bulk_de_dir: SET_ME/inputs/cd8_differential_response
-leading_edge_file: SET_ME/inputs/cd8_fixed_programmes/gsea_leading_edge_long.tsv
-output_dir: SET_ME/outputs/05_plot_la_temporal_quadrant

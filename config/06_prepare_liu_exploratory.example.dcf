@@ -1,7 +1,0 @@
-source_rda: ../SET_ME/source_rda.rda
-official_s2_tpm: ../SET_ME/official_s2_tpm.txt
-clinical_workbook: ../SET_ME/clinical_workbook.xlsx
-gene_alias: ../references/gene_symbol_alias_manifest.tsv
-lm12_members: ../SET_ME/lm12_members.tsv
-program_membership: ../references/program_nondefinition_gene_membership.tsv.gz
-output_dir: ../SET_ME/06_prepare_liu_exploratory_output

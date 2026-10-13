@@ -1,0 +1,27 @@
+Task: ag_survival
+Layer: core
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+Input-projects_data: SET_ME/projects.rdata
+
+Step: s00
+Script: ag_survival/00_prepare_ag_km.R
+projects_data: @input/projects_data
+clinical_groups: SET_ME/clinical_data_cluster_list.rdata
+output_dir: @root/ag_survival/s00
+
+Step: s01
+Script: ag_survival/01_run_ag_cox.R
+projects_data: @input/projects_data
+output_dir: @root/ag_survival/s01
+survival_data: @s00/tow_group_clinical_data_list.rdata
+
+Step: s02
+Script: ag_survival/02_finalize_ag_cox.R
+output_dir: @root/ag_survival/s02
+cox_results: @s01/Cox_analysis_results.RData
+cancer_order: SET_ME/frozen_pan_cancer_order_by_integrated_ssgsea.csv
+
+Step: s03
+Script: ag_survival/03_export_formal_ag_km.R
+output_dir: @root/ag_survival/s03
+survival_data: @s00/tow_group_clinical_data_list.rdata

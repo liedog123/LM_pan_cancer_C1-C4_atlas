@@ -1,7 +1,0 @@
-primary_gate: ../SET_ME/g2b_overall_model_gate.tsv
-model_contract: ../SET_ME/model_design_contract.tsv
-counts_manifest: ../SET_ME/pseudobulk_counts_manifest.tsv
-counts_dir: ../SET_ME/counts_dir
-sample_sets_dir: ../SET_ME/sample_sets_dir
-primary_gene_results_dir: ../SET_ME/gene_results
-output_dir: ../SET_ME_OUTPUT/stability

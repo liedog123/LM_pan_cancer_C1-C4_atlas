@@ -1,0 +1,15 @@
+Task: mrna_rppa_concordance
+Layer: supporting
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+
+Step: s13
+Script: transcriptome_proteome/13_run_mrna_rppa_concordance.R
+mrna_model_dir: SET_ME_mrna_model_dir
+mrna_recurrence: SET_ME_mrna_recurrence
+mrna_display: SET_ME_mrna_display
+rppa_within: SET_ME_rppa_within
+rppa_recurrence: SET_ME_rppa_recurrence
+rppa_display: SET_ME_rppa_display
+cancer_gate: SET_ME_cancer_gate
+antibody_dictionary: SET_ME_SUPPLEMENTARY_DIR/rppa_antibody_dictionary_frozen_v0.2_20260723.tsv
+output_dir: @root/mrna_rppa_concordance/s13

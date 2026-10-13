@@ -1,0 +1,37 @@
+task_id	layer	title	config	steps
+acid_signature_selection	definitions	acid signature selection	tasks/definitions/acid_signature_selection.dcf	1
+signature_correlations	supporting	signature correlations	tasks/supporting/signature_correlations.dcf	2
+acid_ag_groups	core	acid ag groups	tasks/core/acid_ag_groups.dcf	3
+acid_ph_correlations	core	acid ph correlations	tasks/core/acid_ph_correlations.dcf	1
+acid_distributions	core	acid distributions	tasks/core/acid_distributions.dcf	2
+tcga_immune_discovery	definitions	tcga immune discovery	tasks/definitions/tcga_immune_discovery.dcf	2
+lm12_definition	definitions	lm12 definition	tasks/definitions/lm12_definition.dcf	2
+c1c4_state_assignment	core	c1c4 state assignment	tasks/core/c1c4_state_assignment.dcf	3
+external_bulk_enrichment	core	external bulk enrichment	tasks/core/external_bulk_enrichment.dcf	2
+ag_survival	core	ag survival	tasks/core/ag_survival.dcf	4
+c1c4_clinical	core	c1c4 clinical	tasks/core/c1c4_clinical.dcf	1
+immune_ecology	core	immune ecology	tasks/core/immune_ecology.dcf	2
+mrna_programmes	core	mrna programmes	tasks/core/mrna_programmes.dcf	3
+lncrna_rppa	core	lncrna rppa	tasks/core/lncrna_rppa.dcf	6
+boundary_gsea	core	boundary gsea	tasks/core/boundary_gsea.dcf	5
+mrna_rppa_concordance	supporting	mrna rppa concordance	tasks/supporting/mrna_rppa_concordance.dcf	1
+subtype_context	supporting	subtype context	tasks/supporting/subtype_context.dcf	2
+somatic_mutations	core	somatic mutations	tasks/core/somatic_mutations.dcf	1
+tmb_msi	core	tmb msi	tasks/core/tmb_msi.dcf	1
+cnv_burden	core	cnv burden	tasks/core/cnv_burden.dcf	2
+cnv_regions	core	cnv regions	tasks/core/cnv_regions.dcf	1
+predicted_drug_response	core	predicted drug response	tasks/core/predicted_drug_response.dcf	1
+drug_crossplatform	supporting	drug crossplatform	tasks/supporting/drug_crossplatform.dcf	2
+drug_shared_axis	supporting	drug shared axis	tasks/supporting/drug_shared_axis.dcf	1
+programme_feature_associations	core	programme feature associations	tasks/core/programme_feature_associations.dcf	2
+single_cell_states	core	single cell states	tasks/core/single_cell_states.dcf	5
+single_cell_pseudobulk	core	single cell pseudobulk	tasks/core/single_cell_pseudobulk.dcf	6
+bassez_sensitivity	supporting	bassez sensitivity	tasks/supporting/bassez_sensitivity.dcf	2
+melanoma_pseudobulk	core	melanoma pseudobulk	tasks/core/melanoma_pseudobulk.dcf	2
+bassez_cellchat	supporting	bassez cellchat	tasks/supporting/bassez_cellchat.dcf	3
+icb_three_cohort	core	icb three cohort	tasks/core/icb_three_cohort.dcf	5
+liu_icb	supporting	liu icb	tasks/supporting/liu_icb.dcf	2
+gide_c1	supporting	gide c1	tasks/supporting/gide_c1.dcf	1
+cd8_qc	core	cd8 qc	tasks/core/cd8_qc.dcf	1
+cd8_response	core	cd8 response	tasks/core/cd8_response.dcf	3
+cd8_figures	exports	cd8 figures	tasks/exports/cd8_figures.dcf	8

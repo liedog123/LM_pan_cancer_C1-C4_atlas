@@ -1,7 +1,0 @@
-technical_gate: SET_ME_technical_gate
-model_contract: SET_ME_model_contract
-counts_manifest: SET_ME_counts_manifest
-exclusion_genes: ../references/definition_exclusion_genes.tsv
-counts_dir: SET_ME_counts_dir
-sample_sets_dir: SET_ME_sample_sets_dir
-output_dir: SET_ME_output_dir

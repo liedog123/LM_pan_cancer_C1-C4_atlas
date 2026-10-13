@@ -1,0 +1,29 @@
+Task: melanoma_pseudobulk
+Layer: core
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+
+Step: s14
+Script: single_cell/14_run_melanoma_pseudobulk_programs.R
+contract: SET_ME_SUPPLEMENTARY_DIR/stage4_melanoma_program_validation_contract_v0.1_20260722.tsv
+stage3_gate: SET_ME_stage3_gate
+source_object: SET_ME_source_object
+frozen_cell_metadata: SET_ME_frozen_cell_metadata
+sample_labels: SET_ME_sample_labels
+readiness: SET_ME_readiness
+catalog: SET_ME_SUPPLEMENTARY_DIR/program_catalog_frozen_v0.1.tsv
+membership_full: SET_ME_SUPPLEMENTARY_DIR/program_gene_membership.tsv.gz
+membership_nondefinition: SET_ME_SUPPLEMENTARY_DIR/program_nondefinition_gene_membership.tsv.gz
+output_dir: @root/melanoma_pseudobulk/s14
+
+Step: s15
+Script: single_cell/15_run_melanoma_patient_deg_gsea.R
+output_dir: @root/melanoma_pseudobulk/s15
+sample_sheet: @s14/melanoma_pseudobulk_sample_sheet.tsv
+counts_manifest: @s14/melanoma_pseudobulk_counts_manifest.tsv
+program_catalog: SET_ME_SUPPLEMENTARY_DIR/program_catalog_frozen_v0.1.tsv
+program_membership: SET_ME_SUPPLEMENTARY_DIR/program_nondefinition_gene_membership.tsv.gz
+fig6_pathways: SET_ME_SUPPLEMENTARY_DIR/fig6_d_pathway_selection.tsv
+hallmark_gmt: SET_ME_hallmark_gmt
+reactome_gmt: SET_ME_reactome_gmt
+gobp_gmt: SET_ME_gobp_gmt
+counts_dir: @s14/counts

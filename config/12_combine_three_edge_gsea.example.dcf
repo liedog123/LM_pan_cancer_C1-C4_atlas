@@ -1,5 +1,0 @@
-e1_dir: SET_ME_e1_dir
-e2_dir: SET_ME_e2_dir
-e3_dir: SET_ME_e3_dir
-definition_registry: ../references/stage3_definition_gene_registry_v0.1_20260723.tsv
-output_dir: SET_ME_output_dir

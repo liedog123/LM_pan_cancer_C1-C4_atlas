@@ -1,3 +1,0 @@
-deg_results_dir: ../outputs/discovery_de/full_degs_for_gsea
-immport_gmt: ../inputs/SET_ME_immPort.gmt
-output_dir: ../outputs/discovery_gsea

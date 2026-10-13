@@ -1,0 +1,11 @@
+Task: predicted_drug_response
+Layer: core
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+
+Step: s01
+Script: drug_response/01_c1c4_from_corrected_predictions.R
+canonical_labels: SET_ME_INPUTS/canonical_labels.csv
+model_input: SET_ME_INPUTS/gdsc_model_input.rds
+prediction_dir: SET_ME_INPUTS/corrected_csv
+drug_annotation: SET_ME_INPUTS/drug_annotation_master.tsv
+output_dir: @root/predicted_drug_response/s01

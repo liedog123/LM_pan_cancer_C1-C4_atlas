@@ -1,0 +1,42 @@
+Task: single_cell_states
+Layer: core
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+
+Step: s04
+Script: single_cell/04_score_initial_lm12.R
+seurat_object: SET_ME/seurat_object
+cell_metadata: SET_ME/cell_metadata
+sample_metadata: SET_ME/sample_metadata
+celltype_to_broad: SET_ME/celltype_to_broad
+compartment_manifest: SET_ME/compartment_manifest
+sample_inclusion_rule: SET_ME/sample_inclusion_rule
+treatment_map: SET_ME/treatment_map
+lm12_manifest: SET_ME/lm12_manifest
+lm12_gene_long: SET_ME/lm12_gene_long
+output_dir: @root/single_cell_states/s04
+
+Step: s05
+Script: single_cell/05_refine_and_rescore_lm12.R
+seurat_object: SET_ME/seurat_object
+output_dir: @root/single_cell_states/s05
+initial_bundle: @s04/initial_scoring_bundle.rds
+
+Step: s01
+Script: single_cell/01_assign_study_compartment_ig_states.R
+output_dir: @root/single_cell_states/s01
+refine_bundle: @s05/studywise_refine_bundle.rds
+
+Step: s02
+Script: single_cell/02_score_acid_assign_ag_states.R
+seurat_object: SET_ME_seurat_object
+output_dir: @root/single_cell_states/s02
+refine_bundle: @s05/studywise_refine_bundle.rds
+selected_genes: SET_ME_selected_genes
+
+Step: s03
+Script: single_cell/03_map_sample_c1c4_states.R
+cell_metadata: SET_ME_cell_metadata
+sample_metadata: SET_ME_sample_metadata
+output_dir: @root/single_cell_states/s03
+ig_cell_states: @s01/cell_level_local_ig_states.tsv.gz
+ag_cell_states: @s02/cell_level_acid_scores_and_ag_states.tsv.gz

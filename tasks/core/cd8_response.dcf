@@ -1,0 +1,30 @@
+Task: cd8_response
+Layer: core
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+Input-count_rdata: SET_ME/inputs/cd8_counts.RData
+Input-lm12_membership: SET_ME/inputs/lm12_membership.tsv
+Input-msigdb_dir: SET_ME/inputs/msigdb_dir
+
+Step: s02
+Script: cd8_perturbation/02_differential_response.R
+count_rdata: @input/count_rdata
+output_dir: @root/cd8_response/s02
+
+Step: s03
+Script: cd8_perturbation/03_fixed_programme_gsea.R
+count_rdata: @input/count_rdata
+output_dir: @root/cd8_response/s03
+lm12_membership: @input/lm12_membership
+msigdb_dir: @input/msigdb_dir
+melanoma_counts: SET_ME/inputs/CD8_T_pseudobulk_counts.rds
+melanoma_deg: SET_ME/inputs/cd8_t_c1_vs_c4__gene_level_deg.tsv.gz
+bulk_de_dir: @s02/
+
+Step: s04
+Script: cd8_perturbation/04_hcl_control_phenotype.R
+count_rdata: @input/count_rdata
+output_dir: @root/cd8_response/s04
+lm12_membership: @input/lm12_membership
+msigdb_dir: @input/msigdb_dir
+bulk_de_dir: @s02/
+bridge_dir: @s03/

@@ -1,3 +1,0 @@
-cox_results: SET_ME/Cox_analysis_results.RData
-cancer_order: SET_ME/frozen_pan_cancer_order_by_integrated_ssgsea.csv
-output_dir: SET_ME/new_ag_cox_final

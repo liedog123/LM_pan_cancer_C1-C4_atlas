@@ -1,4 +1,0 @@
-numeric_manifest: SET_ME_numeric_manifest
-bundle_dir: SET_ME_bundle_dir
-program_clusters: ../references/mrna_c1c4_extreme_cluster_registry_v0.2_20260730.tsv
-output_dir: SET_ME_output_dir

@@ -1,4 +1,0 @@
-seurat_object: SET_ME/seurat_object
-balanced_cell_manifest: SET_ME/balanced_cell_manifest
-rep1_objects_dir: SET_ME/rep1_objects_dir
-output_dir: SET_ME/independent_empty_output

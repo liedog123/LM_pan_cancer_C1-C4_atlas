@@ -1,49 +1,35 @@
-# C1–C4 pan-cancer atlas
+# C1-C4 atlas analysis code
 
-Core analysis code for *Joint states of lactate-associated transcription and inflammatory remodelling across human cancers*.
+Explore lactate-associated transcription and inflammatory remodelling through the paper's analysis routes.
 
-The repository contains 90 R entries in 15 modules, with one example DCF per entry. Start with the research question below, then follow the corresponding route in the [workflow guide](docs/workflow_guide.md). Entry numbers are local to each module.
+One dispatcher exposes 36 task configurations: 23 core analyses, 3 definition-construction tasks, 9 supporting analyses and 1 CD8 figure/table task. Ninety retained implementations are internal steps; their scientific code has not been refactored.
 
-## Start here
+This code-only release provides the task interface below. Interface checks are recorded in [checks](checks/README.md); study-data numerical reproduction has not been performed.
 
-| Research question | Workflow route |
+| Paper result | Tasks |
 |---|---|
-| Define the acid signature, LM12 and joint states | [Signature and states](docs/workflow_guide.md#signature-and-states) |
-| Examine external bulk, survival and immune ecology | [Bulk validation and clinical context](docs/workflow_guide.md#bulk-validation-and-clinical-context) |
-| Compare RNA, protein and genomic layers | [Multiomics](docs/workflow_guide.md#multiomics) |
-| Examine predicted drug vulnerability and programme associations | [Predicted drug response](docs/workflow_guide.md#predicted-drug-response) |
-| Resolve cell compartments and independent melanoma evidence | [Cellular context](docs/workflow_guide.md#cellular-context) |
-| Examine immunotherapy associations | [Immunotherapy context](docs/workflow_guide.md#immunotherapy-context) |
-| Examine experimental CD8 time responses | [CD8 time course](docs/workflow_guide.md#cd8-time-course) |
+| Fig. 1 | acid_ag_groups, acid_ph_correlations, acid_distributions, ag_survival |
+| Fig. 2 | c1c4_state_assignment, external_bulk_enrichment, c1c4_clinical, immune_ecology |
+| Fig. 3 | mrna_programmes, lncrna_rppa, boundary_gsea |
+| Fig. 4 | somatic_mutations, tmb_msi, cnv_burden, cnv_regions |
+| Fig. 5 | predicted_drug_response, programme_feature_associations |
+| Fig. 6 | single_cell_states, single_cell_pseudobulk, melanoma_pseudobulk, icb_three_cohort |
+| Fig. 7 | cd8_qc, cd8_response, cd8_figures |
 
-## Use a workflow
-
-1. Read its module README and obtain the exact matching inputs.
-2. Copy its example DCF to a `*.local.dcf` file and replace the placeholders. Relative paths resolve from the DCF directory.
-3. Review the entry's `--help` and documented configuration check. Use a separate absent or empty output directory for each stage.
-
-For example:
+Supporting tasks reproduce reported supplementary results and remain part of full-paper reproduction. Definition construction can be skipped when starting downstream from adopted frozen definitions.
 
 ```sh
-cp config/drug_shared_numeric.example.dcf config/drug_shared_numeric.local.dcf
-# Edit the local DCF: provide every required input and an independent output_dir.
-Rscript workflows/drug_response/05_build_shared_numeric_inputs.R --help
-Rscript workflows/drug_response/05_build_shared_numeric_inputs.R --config config/drug_shared_numeric.local.dcf --check-config
+Rscript run.R --list
+Rscript run.R --task cd8_response --plan
+Rscript run.R --task cd8_response --config /path/to/cd8_response.dcf --steps s02 --check-config
+Rscript run.R --task cd8_response --config /path/to/cd8_response.dcf
 ```
 
-For this entry, `--check-config` checks file/path metadata and creates no analysis outputs. Ordinary execution requires the documented inputs and dependencies. Consult the chosen entry; this example does not define a universal CLI.
+Obtain matching inputs and edit a copied task configuration first. Example placeholders are not delivered data. Use a new output root outside this package. There is no repository-wide run-all command.
 
-## Inputs and verification
+See [usage](docs/task_usage.md), [input delivery](docs/input_delivery.md), [task index](docs/task_index.tsv) and [step mapping](docs/step_index.tsv).
+The existing [result mapping](https://github.com/liedog123/LM_pan_cancer_C1-C4_atlas/tree/7fc95d5e205c7dfced0ffdfa4b17945bf62d13e5/docs/result_output_mapping.md) and [environment evidence](https://github.com/liedog123/LM_pan_cancer_C1-C4_atlas/tree/7fc95d5e205c7dfced0ffdfa4b17945bf62d13e5/environment/README.md) remain the provenance sources.
 
-This is an input-dependent code release. Study-prepared expression/counts, patient/cell objects and the nineteen reference-table payloads are not supplied. Expected DCF filenames are not download channels. Use the [input inventory](docs/input_access_and_permissions.md), [reference requirements](references/README.md) and [supplementary-input mapping](docs/reference_file_candidates.md#supplementary-material-first).
+MIT applies to the code. The nineteen reference tables are delivered through the paper's supplementary-material channel. No reference payload, GMT, expression matrix, FASTQ or patient object is included.
 
-Existing checks cover limited syntax, static and synthetic interfaces; end-to-end real-data reproduction and complete runtime compatibility are unverified. The [environment guide](environment/README.md) records dependencies and evidence. R 4.5.1 is the packaging/check environment, not every historical generating environment.
-
-## Further information
-
-- [Workflow guide and all 90 entry roles](docs/workflow_guide.md)
-- [Result/output map for Fig. 1–7 and Supplementary Tables 1–7](docs/result_output_mapping.md)
-- [Implementation notes and reference boundaries](references/README.md)
-- [Release scope](docs/release_scope.md)
-
-Software and accompanying documentation are licensed under [MIT](LICENSE). Third-party resources and study data retain their separate terms.
+Last updated: 2026-10-13

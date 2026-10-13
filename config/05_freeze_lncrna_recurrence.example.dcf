@@ -1,4 +1,0 @@
-# Paths resolve relative to this DCF. Replace every SET_ME value.
-# output_dir must be an independent absent or empty directory.
-model_dir: SET_ME/model_dir
-output_dir: SET_ME/output_dir

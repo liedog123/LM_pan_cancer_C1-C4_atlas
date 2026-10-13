@@ -1,0 +1,8 @@
+Task: cd8_qc
+Layer: core
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+
+Step: s01
+Script: cd8_perturbation/01_qc_and_pca.R
+count_rdata: SET_ME/inputs/cd8_counts.RData
+output_dir: @root/cd8_qc/s01

@@ -1,0 +1,14 @@
+Task: tcga_immune_discovery
+Layer: definitions
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+
+Step: s01
+Script: tcga_discovery/01_build_high_low_deg.R
+processed_data: ../inputs/SET_ME_pancancer_full_data_list.rdata
+output_dir: @root/tcga_immune_discovery/s01
+
+Step: s02
+Script: tcga_discovery/02_run_immport_gsea.R
+output_dir: @root/tcga_immune_discovery/s02
+deg_results_dir: @s01/
+immport_gmt: ../inputs/SET_ME_immPort.gmt

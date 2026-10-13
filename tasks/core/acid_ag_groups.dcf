@@ -1,0 +1,27 @@
+Task: acid_ag_groups
+Layer: core
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+Input-final_genes: SET_ME/frozen/final_selected_genes.rdata
+Input-tpm_root: SET_ME/tpm/output_mRNA_lncRNA_expr
+
+Step: s01
+Script: acid_ag_preprocessing/01_score_frozen_acid_signature.R
+final_genes: @input/final_genes
+clinical_table: SET_ME/clinical/Survival_SupplementalTable_S1_20171025_xena_sp
+tpm_root: @input/tpm_root
+output_dir: @root/acid_ag_groups/s01
+
+Step: s02
+Script: acid_ag_preprocessing/02_assign_acid_groups.R
+final_genes: @input/final_genes
+tpm_root: @input/tpm_root
+output_dir: @root/acid_ag_groups/s02
+acid_scores: @s01/per_acid_scores_list.rdata
+clinical_data: @s01/clinical_data_list.rdata
+
+Step: s03
+Script: acid_ag_preprocessing/03_export_processed_input.R
+tpm_root: @input/tpm_root
+output_dir: @root/acid_ag_groups/s03
+acid_scores: @s01/per_acid_scores_list.rdata
+clinical_groups: @s02/clinical_data_cluster_list.rdata

@@ -1,4 +1,0 @@
-final_genes: SET_ME/frozen/final_selected_genes.rdata
-clinical_table: SET_ME/clinical/Survival_SupplementalTable_S1_20171025_xena_sp
-tpm_root: SET_ME/tpm/output_mRNA_lncRNA_expr
-output_dir: SET_ME/new_outputs/acid_scores

@@ -1,7 +1,0 @@
-count_rdata: SET_ME/inputs/cd8_counts.RData
-lm12_membership: SET_ME/inputs/lm12_membership.tsv
-msigdb_dir: SET_ME/inputs/msigdb_dir
-melanoma_counts: SET_ME/inputs/CD8_T_pseudobulk_counts.rds
-melanoma_deg: SET_ME/inputs/cd8_t_c1_vs_c4__gene_level_deg.tsv.gz
-bulk_de_dir: SET_ME/inputs/bulk_de_dir
-output_dir: SET_ME/outputs/03_fixed_programme_gsea

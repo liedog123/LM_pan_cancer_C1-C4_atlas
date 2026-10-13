@@ -1,6 +1,0 @@
-all_votes: SET_ME/new_outputs/lm12_votes/all_pathway_votes_original_like.tsv
-gene_summary: SET_ME/new_outputs/lm12_votes/original_like_gene_set_summary.tsv
-gene_long: SET_ME/new_outputs/lm12_votes/original_like_gene_sets_long.tsv
-candidate_terms: ../references/curated_candidate_pathway_terms.tsv
-family_dictionary: ../references/candidate_pathway_family_dictionary.tsv
-output_dir: SET_ME/new_outputs/lm12_final

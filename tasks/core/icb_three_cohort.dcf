@@ -1,0 +1,46 @@
+Task: icb_three_cohort
+Layer: core
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+Input-program_membership: SET_ME_SUPPLEMENTARY_DIR/program_nondefinition_gene_membership.tsv.gz
+Input-gene_alias: SET_ME_SUPPLEMENTARY_DIR/gene_symbol_alias_manifest.tsv
+
+Step: s01
+Script: icb/01_prepare_riaz_gide.R
+lm12_members: ../SET_ME/lm12_members.tsv
+program_membership: @input/program_membership
+gene_alias: @input/gene_alias
+prior_ipilimumab: ../SET_ME/prior_ipilimumab.tsv
+riaz_expression: ../SET_ME/riaz_expression.rds
+riaz_metadata: ../SET_ME/riaz_metadata.tsv
+gide_expression: ../SET_ME/gide_expression.rds
+gide_metadata: ../SET_ME/gide_metadata.tsv
+braun_hold_metadata: ../SET_ME/braun_hold_metadata.tsv
+output_dir: @root/icb_three_cohort/s01
+
+Step: s02
+Script: icb/02_analyze_riaz_gide.R
+output_dir: @root/icb_three_cohort/s02
+patient_scores: @s01/B_baseline_patient_inclusion_and_scores.tsv
+
+Step: s03
+Script: icb/03_prepare_braun_official.R
+lm12_members: ../SET_ME/lm12_members.input
+program_membership: @input/program_membership
+gene_alias: @input/gene_alias
+output_dir: @root/icb_three_cohort/s03
+official_workbook: ../SET_ME/official_workbook.input
+local_clinical_crosswalk: ../SET_ME/local_clinical_crosswalk.input
+
+Step: s04
+Script: icb/04_analyze_braun_official.R
+output_dir: @root/icb_three_cohort/s04
+patient_scores: @s03/B_Braun_patient_inclusion_and_scores.tsv
+member_coverage: @s03/B_Braun_member_coverage.tsv
+
+Step: s05
+Script: icb/05_integrate_three_cohort.R
+output_dir: @root/icb_three_cohort/s05
+riaz_gide_preparation_dir: @s01/
+riaz_gide_analysis_dir: @s02/
+braun_preparation_dir: @s03/
+braun_analysis_dir: @s04/

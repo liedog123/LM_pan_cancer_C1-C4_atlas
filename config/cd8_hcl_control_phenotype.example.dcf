@@ -1,6 +1,0 @@
-count_rdata: SET_ME/inputs/cd8_counts.RData
-lm12_membership: SET_ME/inputs/lm12_membership.tsv
-msigdb_dir: SET_ME/inputs/msigdb_dir
-bulk_de_dir: SET_ME/inputs/bulk_de_dir
-bridge_dir: SET_ME/inputs/bridge_dir
-output_dir: SET_ME/outputs/04_hcl_control_phenotype

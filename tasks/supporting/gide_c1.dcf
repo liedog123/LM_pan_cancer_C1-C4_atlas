@@ -1,0 +1,10 @@
+Task: gide_c1
+Layer: supporting
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+
+Step: s08
+Script: icb/08_run_gide_c1_sensitivity.R
+patient_scores: ../SET_ME/patient_scores.tsv
+frozen_program_members: ../SET_ME/frozen_program_members.tsv
+lm12_members: ../SET_ME/lm12_members.tsv
+output_dir: @root/gide_c1/s08

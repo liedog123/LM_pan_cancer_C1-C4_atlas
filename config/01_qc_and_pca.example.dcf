@@ -1,2 +1,0 @@
-count_rdata: SET_ME/inputs/cd8_counts.RData
-output_dir: SET_ME/outputs/01_qc_and_pca

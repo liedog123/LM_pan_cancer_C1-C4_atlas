@@ -1,9 +1,0 @@
-# Paths resolve relative to this DCF. Replace every SET_ME value.
-# output_dir must be an independent absent or empty directory.
-edge_recurrence_dir: SET_ME/edge_recurrence_dir
-hallmark_gmt: SET_ME/hallmark_gmt
-reactome_gmt: SET_ME/reactome_gmt
-go_bp_gmt: SET_ME/go_bp_gmt
-c7_gmt: SET_ME/c7_gmt
-immport_gmt: SET_ME/immport_gmt
-output_dir: SET_ME/output_dir

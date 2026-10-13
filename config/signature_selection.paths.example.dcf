@@ -1,5 +1,0 @@
-candidate_genes: ../references/candidate_acid_lactate_genes_142_v0.1_20260831.tsv
-deg_results: ../inputs/SET_ME_tumor_normal_DEGs_list.rdata
-tumor_scores: ../inputs/SET_ME_tumor_diver_gsva_list.rdata
-tpm_root: ../inputs/SET_ME_project_TPM_files
-output_dir: ../outputs/signature_selection

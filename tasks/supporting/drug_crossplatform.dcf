@@ -1,0 +1,21 @@
+Task: drug_crossplatform
+Layer: supporting
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+
+Step: s02
+Script: drug_response/02_run_internal_support.R
+model_input: SET_ME/model_input
+compound_annotation: SET_ME/compound_annotation
+legacy_annotation: SET_ME/legacy_annotation
+output_dir: @root/drug_crossplatform/s02
+
+Step: s03
+Script: drug_response/03_run_prism_crossplatform.R
+output_dir: @root/drug_crossplatform/s03
+gdsc_response: SET_ME/gdsc_response
+prism_curve: SET_ME/secondary-screen-dose-response-top8-filtered.csv
+prism_cell_metadata: SET_ME/secondary-screen-cell-line-info.csv
+internal_support_summary: @s02/gdsc_internal_oof_performance_summary.tsv
+drug_identity: @s02/top_drug_identity_gdsc.tsv
+prism_coverage: SET_ME/prism_coverage
+discovery_counts: SET_ME/discovery_counts
