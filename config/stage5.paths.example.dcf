@@ -1,0 +1,5 @@
+canonical_labels: SET_ME_INPUTS/canonical_labels.csv
+model_input: SET_ME_INPUTS/gdsc_model_input.rds
+prediction_dir: SET_ME_INPUTS/corrected_csv
+drug_annotation: SET_ME_INPUTS/drug_annotation_master.tsv
+output_dir: SET_ME_OUTPUTS/new_independent_stage5_output

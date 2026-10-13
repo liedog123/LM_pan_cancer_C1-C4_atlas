@@ -1,0 +1,5 @@
+expression_dir: ../inputs/SET_ME_GEO_expression_files
+score_dir: ../outputs/external_scores
+lm12_manifest: ../inputs/SET_ME_lm_imm_12_manifest.tsv
+lm12_genes: ../inputs/SET_ME_lm_imm_12_gene_sets_long.tsv
+output_dir: ../outputs/external_gene_level_gsea

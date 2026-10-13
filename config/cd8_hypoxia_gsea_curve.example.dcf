@@ -1,0 +1,4 @@
+bulk_de_dir: SET_ME_bulk_de_dir
+bridge_dir: SET_ME_bridge_dir
+hallmark_gmt: SET_ME_msigdb/h.all.v2025.1.Hs.symbols.gmt
+output_dir: SET_ME_output_dir

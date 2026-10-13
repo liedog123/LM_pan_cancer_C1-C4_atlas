@@ -1,0 +1,2 @@
+bulk_de_dir: SET_ME/inputs/cd8_differential_response
+output_dir: SET_ME/outputs/06_plot_hcl_temporal_quadrant

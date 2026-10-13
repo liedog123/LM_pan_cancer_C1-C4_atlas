@@ -1,0 +1,4 @@
+final_genes: SET_ME/formal/Fig1A_signature_genes.tsv
+tumor_scores: SET_ME/intermediates/tumor_diver_gsva_list.rdata
+tpm_root: SET_ME/tpm
+output_dir: SET_ME/output/s1b_final_nine

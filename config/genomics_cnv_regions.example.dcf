@@ -1,0 +1,5 @@
+manifest: SET_ME/cnv_c1c4_sample_manifest.tsv
+thresholded_cnv: SET_ME/TCGA_PANCAN_CopyNumber_Gistic2_all_thresholded.gz
+gene_coordinates: SET_ME/probeMap_gencode.v23.annotation.gene.probemap
+cytoband: SET_ME/cytoBand.txt.gz
+output_dir: SET_ME/cnv_regions_public_rerun

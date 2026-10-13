@@ -1,0 +1,3 @@
+patient_scores: ../SET_ME/patient_scores.input
+member_coverage: ../SET_ME/member_coverage.input
+output_dir: ../SET_ME/04_analyze_braun_official_output

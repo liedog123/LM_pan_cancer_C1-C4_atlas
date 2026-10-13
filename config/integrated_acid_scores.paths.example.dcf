@@ -1,0 +1,4 @@
+clinical_groups: SET_ME/clinical_data_cluster_list.rdata
+final_genes: SET_ME/final_selected_genes.rdata
+integrated_expression: SET_ME/EB++AdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena.gz
+output_dir: SET_ME/new_outputs/integrated_acid_scores

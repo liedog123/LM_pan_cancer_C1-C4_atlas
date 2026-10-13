@@ -1,0 +1,17 @@
+patient: SET_ME_patient
+pilot: SET_ME_pilot
+mrna: SET_ME_mrna
+definition: ../references/stage3_definition_gene_registry_v0.1_20260723.tsv
+program_genes: ../references/mrna_c1c4_extreme_display_genes_v0.2_20260730.tsv
+program_clusters: ../references/mrna_c1c4_extreme_cluster_registry_v0.2_20260730.tsv
+rppa: SET_ME_rppa
+rppa_dict: ../references/rppa_antibody_dictionary_frozen_v0.2_20260723.tsv
+tcpa: ../references/akbani2014_supp_table13_official_pathway_members.tsv
+tmb: SET_ME_tmb
+mutation: SET_ME_mutation
+cnv: SET_ME_cnv
+estimate: SET_ME_estimate
+cibersort: SET_ME_cibersort
+mcpcounter: SET_ME_mcpcounter
+drug: SET_ME_drug
+output_dir: SET_ME_output_dir

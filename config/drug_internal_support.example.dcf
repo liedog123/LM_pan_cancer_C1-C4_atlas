@@ -1,0 +1,4 @@
+model_input: SET_ME/model_input
+compound_annotation: SET_ME/compound_annotation
+legacy_annotation: SET_ME/legacy_annotation
+output_dir: SET_ME/output_dir

@@ -1,0 +1,6 @@
+seurat_object: SET_ME_seurat_object
+cell_metadata: SET_ME_cell_metadata
+sample_mapping: SET_ME_sample_mapping
+exclusion_genes: ../references/definition_exclusion_genes.tsv
+g1_summary: SET_ME_g1_summary
+output_dir: SET_ME_output_dir

@@ -1,0 +1,10 @@
+sample_sheet: SET_ME_sample_sheet
+counts_manifest: SET_ME_counts_manifest
+program_catalog: ../references/program_catalog_frozen_v0.1.tsv
+program_membership: ../references/program_nondefinition_gene_membership.tsv.gz
+fig6_pathways: ../references/fig6_d_pathway_selection.tsv
+hallmark_gmt: SET_ME_hallmark_gmt
+reactome_gmt: SET_ME_reactome_gmt
+gobp_gmt: SET_ME_gobp_gmt
+counts_dir: SET_ME_counts_dir
+output_dir: SET_ME_output_dir

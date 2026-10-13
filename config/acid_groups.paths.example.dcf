@@ -1,0 +1,5 @@
+acid_scores: SET_ME/new_outputs/acid_scores/per_acid_scores_list.rdata
+final_genes: SET_ME/frozen/final_selected_genes.rdata
+clinical_data: SET_ME/new_outputs/acid_scores/clinical_data_list.rdata
+tpm_root: SET_ME/tpm/output_mRNA_lncRNA_expr
+output_dir: SET_ME/new_outputs/acid_groups

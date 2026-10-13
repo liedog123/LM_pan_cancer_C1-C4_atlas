@@ -1,0 +1,2 @@
+validation_data: SET_ME/clinical_validation_data.Rdata
+output_dir: SET_ME/new_outputs/acid_tumor_normal

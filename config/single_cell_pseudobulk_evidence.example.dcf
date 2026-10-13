@@ -1,0 +1,10 @@
+primary_gate: ../SET_ME/g2b_overall_model_gate.tsv
+stability_gate: ../SET_ME/g2c_stability_gate.tsv
+candidates: ../SET_ME/stability_candidate_genes.tsv.gz
+sensitivity: ../SET_ME/sensitivity_gene_concordance.tsv.gz
+cohort_meta: ../SET_ME/cohort_meta_summary.tsv.gz
+loso: ../SET_ME/loso_gene_summary.tsv.gz
+target_stability_summary: ../SET_ME/target_stability_summary.tsv
+legacy_deg: ../SET_ME/all_findmarkers_results.tsv.gz
+primary_gene_results_dir: ../SET_ME/gene_results
+output_dir: ../SET_ME_OUTPUT/evidence

@@ -1,0 +1,7 @@
+model_dir: SET_ME_model_dir
+hallmark_gmt: SET_ME_hallmark_gmt
+reactome_gmt: SET_ME_reactome_gmt
+go_bp_gmt: SET_ME_go_bp_gmt
+c7_gmt: SET_ME_c7_gmt
+immport_gmt: SET_ME_immport_gmt
+output_dir: SET_ME_output_dir

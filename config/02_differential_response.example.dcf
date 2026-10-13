@@ -1,0 +1,2 @@
+count_rdata: SET_ME/inputs/cd8_counts.RData
+output_dir: SET_ME/outputs/02_differential_response

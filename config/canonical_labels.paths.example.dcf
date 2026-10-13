@@ -1,0 +1,4 @@
+assignment_labels: SET_ME/new_outputs/shared_states/ag3ig2_c1c4_sample_labels.csv
+axis_scores: SET_ME/new_outputs/shared_axes/c1c4_axis_sample_scores.tsv.gz
+feature_metadata: SET_ME/new_outputs/shared_states/lm12_feature_metadata.tsv
+output_dir: SET_ME/new_outputs/canonical_labels

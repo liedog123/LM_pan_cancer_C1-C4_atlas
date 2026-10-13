@@ -1,0 +1,3 @@
+clinical_workbook: ../SET_ME/clinical_workbook.xlsx
+outcome_blind_assignments: ../SET_ME/outcome_blind_assignments.tsv
+output_dir: ../SET_ME/07_analyze_liu_exploratory_output

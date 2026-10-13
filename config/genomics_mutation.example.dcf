@@ -1,0 +1,3 @@
+callable_dir: SET_ME/accepted_callable
+mutation_events: SET_ME/mutation.gz
+output_dir: SET_ME/independent_mutation_output

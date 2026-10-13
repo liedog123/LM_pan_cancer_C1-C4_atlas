@@ -1,0 +1,4 @@
+model_dir: SET_ME_model_dir
+antibody_dictionary: ../references/rppa_antibody_dictionary_frozen_v0.2_20260723.tsv
+tcpa_table13: ../references/akbani2014_supp_table13_official_pathway_members.tsv
+output_dir: SET_ME_output_dir

@@ -1,0 +1,5 @@
+riaz_gide_preparation_dir: ../SET_ME/riaz_gide_preparation_dir
+riaz_gide_analysis_dir: ../SET_ME/riaz_gide_analysis_dir
+braun_preparation_dir: ../SET_ME/braun_preparation_dir
+braun_analysis_dir: ../SET_ME/braun_analysis_dir
+output_dir: ../SET_ME/05_integrate_three_cohort_output

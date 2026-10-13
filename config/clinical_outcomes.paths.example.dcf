@@ -1,0 +1,4 @@
+patient_manifest: ../SET_ME_inputs/clinical_patient_analysis_manifest.tsv
+canonical_labels: ../SET_ME_inputs/final_ag3ig2_c1c4_subtype_labels.csv
+clinical_data: ../SET_ME_inputs/pancancer_full_data_list.rdata
+output_dir: ../SET_ME_outputs/clinical_outcomes

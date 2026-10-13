@@ -1,0 +1,25 @@
+# Keep research inputs, private paths and machine outputs outside version control.
+*.local.dcf
+*.private.dcf
+inputs/
+data/
+outputs/
+results/
+run_reports/
+*.log
+*.rds
+*.RData
+*.RDS
+
+# Scientific inputs are distributed separately.
+*.tsv
+*.tsv.gz
+*.gmt
+*.gmt.gz
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.bam
+*.cram
+!SOURCE_MANIFEST.tsv

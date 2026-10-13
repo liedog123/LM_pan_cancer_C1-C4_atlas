@@ -1,0 +1,5 @@
+canonical_labels: SET_ME/canonical_labels.csv
+continuous_cnv: SET_ME/continuous_cnv.tsv.gz
+cancer_order: SET_ME/cancer_order.csv
+state_palette: SET_ME/state_palette.tsv
+output_dir: SET_ME/new_four_state_cnv_burden_output

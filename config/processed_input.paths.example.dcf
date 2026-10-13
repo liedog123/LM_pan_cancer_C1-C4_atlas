@@ -1,0 +1,4 @@
+acid_scores: SET_ME/new_outputs/acid_scores/per_acid_scores_list.rdata
+clinical_groups: SET_ME/new_outputs/acid_groups/clinical_data_cluster_list.rdata
+tpm_root: SET_ME/tpm/output_mRNA_lncRNA_expr
+output_dir: SET_ME/new_outputs/processed_input

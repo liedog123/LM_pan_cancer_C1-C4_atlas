@@ -1,0 +1,6 @@
+sample_sheet: SET_ME_sample_sheet
+counts_manifest: SET_ME_counts_manifest
+model_contract: SET_ME_model_contract
+marker_panel: ../references/fig6_c_compact_functional_gene_selection.tsv
+counts_dir: SET_ME_counts_dir
+output_dir: SET_ME_output_dir

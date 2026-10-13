@@ -1,0 +1,8 @@
+canonical_labels: SET_ME_canonical_labels
+patient_manifest: SET_ME_patient_manifest
+estimate_scores: SET_ME_estimate_scores
+cibersort_scores: SET_ME_cibersort_scores
+mcpcounter_scores: SET_ME_mcpcounter_scores
+acid_genes: SET_ME_acid_genes
+lm12_genes: SET_ME_lm12_genes
+output_dir: SET_ME_output_dir

@@ -1,0 +1,8 @@
+patient_manifest: SET_ME/patient_manifest.tsv
+lncrna_dir: SET_ME/lncrna_expression
+lncrna_registry: ../references/lncrna_grch38_113_annotation_registry_v0.2_20260723.tsv
+rppa_matrix: SET_ME/protein.gz
+antibody_dictionary: ../references/rppa_antibody_dictionary_frozen_v0.2_20260723.tsv
+definition_registry: ../references/stage3_definition_gene_registry_v0.1_20260723.tsv
+readiness_decision: SET_ME/readiness_decision.tsv
+output_dir: SET_ME/independent_empty_output

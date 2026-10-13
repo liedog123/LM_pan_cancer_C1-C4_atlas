@@ -1,0 +1,5 @@
+patient_manifest: SET_ME_patient_manifest
+mrna_rdata: SET_ME_mrna_rdata
+definition_registry: ../references/stage3_definition_gene_registry_v0.1_20260723.tsv
+readiness_decision: SET_ME_readiness_decision
+output_dir: SET_ME_output_dir

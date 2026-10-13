@@ -1,0 +1,10 @@
+contract: ../references/stage4_melanoma_program_validation_contract_v0.1_20260722.tsv
+stage3_gate: SET_ME_stage3_gate
+source_object: SET_ME_source_object
+frozen_cell_metadata: SET_ME_frozen_cell_metadata
+sample_labels: SET_ME_sample_labels
+readiness: SET_ME_readiness
+catalog: ../references/program_catalog_frozen_v0.1.tsv
+membership_full: ../references/program_gene_membership.tsv.gz
+membership_nondefinition: ../references/program_nondefinition_gene_membership.tsv.gz
+output_dir: SET_ME_output_dir

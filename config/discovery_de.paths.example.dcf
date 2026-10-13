@@ -1,0 +1,2 @@
+processed_data: ../inputs/SET_ME_pancancer_full_data_list.rdata
+output_dir: ../outputs/discovery_de

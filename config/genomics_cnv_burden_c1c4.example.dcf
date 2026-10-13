@@ -1,0 +1,4 @@
+readiness_dir: SET_ME/prepared_cnv_readiness
+continuous_cnv: SET_ME/continuous_cnv.tsv.gz
+thresholded_cnv: SET_ME/thresholded_cnv.tsv.gz
+output_dir: SET_ME/new_c1c4_cnv_burden_output

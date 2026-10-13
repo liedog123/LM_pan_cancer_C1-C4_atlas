@@ -1,0 +1,3 @@
+cell_metadata: SET_ME/cell_metadata
+sample_patient: SET_ME/sample_patient
+output_dir: SET_ME/independent_empty_output

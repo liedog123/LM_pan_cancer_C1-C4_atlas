@@ -1,0 +1,3 @@
+seurat_object: SET_ME/seurat_object
+initial_bundle: SET_ME/initial_bundle
+output_dir: SET_ME/independent_empty_output

@@ -1,0 +1,10 @@
+patient_manifest: SET_ME_PATIENT_MANIFEST
+canonical_labels: SET_ME_CANONICAL_LABELS
+immune_subtypes: SET_ME_IMMUNE_SUBTYPES
+molecular_subtypes: SET_ME_MOLECULAR_SUBTYPES
+program_membership: ../references/program_nondefinition_gene_membership.tsv.gz
+mrna_rdata: SET_ME_MRNA_RDATA
+tcpa_table13: ../references/akbani2014_supp_table13_official_pathway_members.tsv
+antibody_dictionary: ../references/rppa_antibody_dictionary_frozen_v0.2_20260723.tsv
+rppa_matrix: SET_ME_RPPA_MATRIX
+output_dir: SET_ME_OUTPUT_DIR

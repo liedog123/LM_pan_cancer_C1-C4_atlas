@@ -1,0 +1,8 @@
+gdsc_response: SET_ME/gdsc_response
+prism_curve: SET_ME/secondary-screen-dose-response-top8-filtered.csv
+prism_cell_metadata: SET_ME/secondary-screen-cell-line-info.csv
+internal_support_summary: SET_ME/internal_support_summary
+drug_identity: SET_ME/drug_identity
+prism_coverage: SET_ME/prism_coverage
+discovery_counts: SET_ME/discovery_counts
+output_dir: SET_ME/output_dir
