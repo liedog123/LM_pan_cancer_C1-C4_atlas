@@ -68,8 +68,8 @@ drug_response/01_c1c4_from_corrected_predictions.R	data.table	R parse tree; vers
 drug_response/01_c1c4_from_corrected_predictions.R	tools	R parse tree; version not inferred
 drug_response/03_run_prism_concordance.R	readxl	R parse tree; version not inferred
 drug_response/04_run_shared_axis_adjustment.R	stats	R parse tree; version not inferred
-drug_response/05_build_shared_numeric_inputs.R	data.table	R parse tree; version not inferred
-drug_response/05_build_shared_numeric_inputs.R	matrixStats	R parse tree; version not inferred
+drug_response/05_build_programme_numeric_inputs.R	data.table	R parse tree; version not inferred
+drug_response/05_build_programme_numeric_inputs.R	matrixStats	R parse tree; version not inferred
 drug_response/06_run_programme_feature_associations.R	data.table	R parse tree; version not inferred
 external_bulk/01_build_external_scores.R	AnnotationDbi	R parse tree; version not inferred
 external_bulk/01_build_external_scores.R	GSVA	R parse tree; version not inferred

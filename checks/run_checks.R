@@ -59,7 +59,10 @@ make_cfg<-function(vals,name) {
 prism<-c(gdsc_response=fake("GDSC2.xlsx"),prism_curve=fake("secondary-screen-dose-response-top8-filtered.csv"),prism_cell_metadata=fake("secondary-screen-cell-line-info.csv"),output_dir=file.path(fixture,"prism_output"))
 axis<-c(drug_complete=fake("complete.tsv"),shared_patient=fake("shared.tsv"),prediction_audit=fake("audit.tsv"),prediction_dir=pred,output_dir=file.path(fixture,"axis_output"))
 surv<-c(projects_data=fake("projects.rdata"),clinical_groups=fake("clinical.rdata"),output_dir=file.path(fixture,"survival_output"))
-for(item in list(list(id="prism",script="drug_response/03_run_prism_concordance.R",vals=prism),list(id="axis",script="drug_response/04_run_shared_axis_adjustment.R",vals=axis),list(id="survival",script="ag_survival/00_prepare_ag_survival_inputs.R",vals=surv))) {
+numeric_fields <- c("patient","mrna","program_genes","program_clusters","rppa","rppa_dict","tcpa","tmb","mutation","cnv","estimate","cibersort","mcpcounter","drug")
+numeric <- setNames(vapply(numeric_fields,function(x)fake(paste0(x,".tsv")),character(1)),numeric_fields)
+numeric <- c(numeric,output_dir=file.path(fixture,"numeric_output"))
+for(item in list(list(id="prism",script="drug_response/03_run_prism_concordance.R",vals=prism),list(id="axis",script="drug_response/04_run_shared_axis_adjustment.R",vals=axis),list(id="survival",script="ag_survival/00_prepare_ag_survival_inputs.R",vals=surv),list(id="numeric",script="drug_response/05_build_programme_numeric_inputs.R",vals=numeric))) {
  config<-make_cfg(item$vals,item$id)
  z<-call(file.path(root,"internal",item$script),c("--config",config,"--check-config"))
  record(paste0(item$id,"_metadata_early_exit"),z$status==0L&&!file.exists(item$vals[["output_dir"]]))

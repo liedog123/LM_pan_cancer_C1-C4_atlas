@@ -4,11 +4,9 @@ Output-Root: SET_ME_NEW_OUTPUT_ROOT
 Input-program_clusters: SET_ME_SUPPLEMENTARY_DIR/mrna_c1c4_extreme_cluster_registry_v0.2_20260730.tsv
 
 Step: s05
-Script: drug_response/05_build_shared_numeric_inputs.R
+Script: drug_response/05_build_programme_numeric_inputs.R
 patient: SET_ME_patient
-pilot: SET_ME_pilot
 mrna: SET_ME_mrna
-definition: SET_ME_SUPPLEMENTARY_DIR/stage3_definition_gene_registry_v0.1_20260723.tsv
 program_genes: SET_ME_SUPPLEMENTARY_DIR/mrna_c1c4_extreme_display_genes_v0.2_20260730.tsv
 program_clusters: @input/program_clusters
 rppa: SET_ME_rppa

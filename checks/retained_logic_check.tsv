@@ -9,3 +9,6 @@ survival_survival_data	TRUE
 survival_survival_data	TRUE
 survival_survival_data_list[[project]]	TRUE
 "survival_save(survival_data_list,_file_=_file.path(out_dir,_""tow_group_clinical_data_list.rdata""))"	TRUE
+programme_helpers	TRUE
+programme_feature_preparation	TRUE
+programme_consumer_has_no_removed_field_dependencies	TRUE

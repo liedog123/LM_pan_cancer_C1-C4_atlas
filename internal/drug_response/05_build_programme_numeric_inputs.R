@@ -1,12 +1,12 @@
 #!/usr/bin/env Rscript
 # Purpose: Prepare and test state-adjusted programme-feature associations within cancers.
 # Task: programme_feature_associations; step: s05
-# Inputs (DCF fields): patient,pilot,mrna,definition,program_genes,program_clusters,rppa,rppa_dict,tcpa,tmb,mutation,cnv,estimate,cibersort,mcpcounter,drug
+# Inputs (DCF fields): patient,mrna,program_genes,program_clusters,rppa,rppa_dict,tcpa,tmb,mutation,cnv,estimate,cibersort,mcpcounter,drug
 # Outputs: new files under output_dir; source inputs are read-only.
 # Usage: Rscript run.R --task programme_feature_associations --config /path/to/task.dcf
 # Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
 
-usage <- function() cat("Usage: Rscript 05_build_shared_numeric_inputs.R --config PATH [--check-config]\n       Rscript 05_build_shared_numeric_inputs.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
+usage <- function() cat("Usage: Rscript 05_build_programme_numeric_inputs.R --config PATH [--check-config]\n       Rscript 05_build_programme_numeric_inputs.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }
 if (!(length(args) %in% c(2L,3L)) || args[1L] != "--config" ||
@@ -41,14 +41,14 @@ config_keys <- trimws(sub(":.*$", "", config_lines[
   grepl("^[^[:space:]#][^:]*:", config_lines)]))
 if(anyDuplicated(config_keys)) stop("DCF fields must not repeat.")
 cfg <- read.dcf(config_path)
-fields <- c("patient", "pilot", "mrna", "definition", "program_genes", "program_clusters", "rppa", "rppa_dict", "tcpa", "tmb", "mutation", "cnv", "estimate", "cibersort", "mcpcounter", "drug", "output_dir")
+fields <- c("patient", "mrna", "program_genes", "program_clusters", "rppa", "rppa_dict", "tcpa", "tmb", "mutation", "cnv", "estimate", "cibersort", "mcpcounter", "drug", "output_dir")
 if(nrow(cfg)!=1L || !setequal(colnames(cfg),fields) || ncol(cfg)!=length(fields)) stop("DCF must contain exactly the documented fields.")
 cfg <- setNames(as.character(cfg[1L,fields]),fields)
 if(anyNA(cfg) || any(!nzchar(trimws(cfg))) || any(grepl("SET_ME",cfg,fixed=TRUE))) stop("Replace placeholders.")
 path_fields <- fields
 paths <- vapply(cfg[path_fields],resolve_path,character(1L),base_dir=dirname(config_path))
 out_dir <- unname(paths["output_dir"])
-input_paths <- paths[c("patient", "pilot", "mrna", "definition", "program_genes", "program_clusters", "rppa", "rppa_dict", "tcpa", "tmb", "mutation", "cnv", "estimate", "cibersort", "mcpcounter", "drug")]
+input_paths <- paths[c("patient", "mrna", "program_genes", "program_clusters", "rppa", "rppa_dict", "tcpa", "tmb", "mutation", "cnv", "estimate", "cibersort", "mcpcounter", "drug")]
 required_files <- unname(input_paths)
 
 if(any(!file_test("-f",required_files)) || any(file.access(required_files,4L)!=0L) ||
@@ -131,7 +131,7 @@ left_matrix <- function(ids, dt, id_col, value_cols, prefix = "") {
 }
 
 main <- function() {
-  # Preserve every shared-input component and source scientific gate.
+  # 仅构建六类关联检验使用的数值输入，保留原有标准化、患者与特征范围。
   out_dir <- unname(paths["output_dir"])
   bundle_dir <- file.path(out_dir, "bundles")
   dir.create(bundle_dir, recursive = TRUE, showWarnings = FALSE)
@@ -141,18 +141,10 @@ main <- function() {
 
   log_event("START", "构建Stage 1共用数值输入", list(
     project = "LM_pan_cancer", output = out_dir,
-    formal_model = "NONE", rna_topvar = 200L
+    formal_model = "programme_feature_associations"
   ))
 
   patient <- fread(p$patient)
-  pilot <- fread(p$pilot)
-  pilot_cancers <- pilot[selected_for_mofa_pilot == TRUE, Cancer]
-  if (!setequal(pilot_cancers, c("BRCA", "LGG", "COAD", "PRAD", "OV"))) stop("试点癌种漂移")
-
-  definition <- fread(p$definition)
-  definition_genes <- unique(norm_gene(definition$gene_symbol))
-  if (length(definition_genes) != 497L) stop("definition gene不是497个唯一symbol")
-
   pg <- fread(p$program_genes)
   clusters <- fread(p$program_clusters)
   pg[, Gene := norm_gene(Gene)]
@@ -292,36 +284,10 @@ main <- function() {
     rownames(drug_mat) <- ids
     colnames(drug_mat) <- paste0("PRED_DRUG_", drug_cols)
 
-    strict_ids <- meta[MOFA_All_Orthogonal == TRUE, Patient_ID]
-    topvar <- matrix(numeric(), nrow = length(strict_ids), ncol = 0,
-                     dimnames = list(strict_ids, character()))
-    rppa_mofa <- matrix(numeric(), nrow = length(strict_ids), ncol = 0,
-                        dimnames = list(strict_ids, character()))
-    if (cancer %in% pilot_cancers) {
-      nondef <- setdiff(rownames(log_expr), definition_genes)
-      mm <- log_expr[nondef, match(strict_ids, ids), drop = FALSE]
-      vv <- rowVars(mm, na.rm = TRUE)
-      valid <- is.finite(vv) & vv > 0 & rowMeans(is.finite(mm)) >= 0.95
-      ord <- order(vv[valid], decreasing = TRUE)
-      selected_genes <- rownames(mm)[valid][head(ord, 200L)]
-      topvar <- t(z_rows(mm[selected_genes, , drop = FALSE]))
-      rownames(topvar) <- strict_ids
-
-      rr <- rppa[match(strict_ids, ids), , drop = FALSE]
-      obs <- colMeans(is.finite(rr))
-      vv_r <- colVars(rr, na.rm = TRUE)
-      keep_r <- is.finite(vv_r) & vv_r > 0 & obs >= 0.80
-      rppa_mofa <- t(z_rows(t(rr[, keep_r, drop = FALSE])))
-      rownames(rppa_mofa) <- strict_ids
-    }
-
     bundle <- list(
       cancer = cancer,
       patient = as.data.frame(meta),
       rna_program = prog,
-      rna_topvar_200 = topvar,
-      rppa_all = rppa,
-      rppa_mofa = rppa_mofa,
       rppa_tcpa_pathway = rppa_path,
       cnv = cnv_mat,
       genomic = genome,
@@ -334,17 +300,15 @@ main <- function() {
 
     manifest_rows[[cancer]] <- data.table(
       Cancer = cancer, N_Canonical = nrow(meta), N_C1 = sum(meta$C_subtype == "C1"),
-      N_C4 = sum(meta$C_subtype == "C4"), N_Strict_MOFA = length(strict_ids),
-      Is_MOFA_Pilot = cancer %in% pilot_cancers,
-      N_RNA_Programs = ncol(prog), N_RNA_TopVar = ncol(topvar),
-      N_RPPA_All = ncol(rppa), N_RPPA_MOFA = ncol(rppa_mofa),
+      N_C4 = sum(meta$C_subtype == "C4"),
+      N_RNA_Programs = ncol(prog), N_RPPA_All = ncol(rppa),
       N_TCPA_Pathways = ncol(rppa_path), N_CNV = ncol(cnv_mat),
       N_Genomic = ncol(genome), N_Immune = ncol(immune), N_PredDrug = ncol(drug_mat),
       Bundle = out_file, Bundle_Bytes = file.info(out_file)$size
     )
     log_event("CHECKPOINT", "癌种数值bundle完成", list(
-      cancer = cancer, n_samples = nrow(meta), n_strict = length(strict_ids),
-      n_programs = ncol(prog), n_rppa = ncol(rppa_mofa)
+      cancer = cancer, n_samples = nrow(meta),
+      n_programs = ncol(prog), n_rppa_pathways = ncol(rppa_path)
     ))
   }
 
@@ -355,25 +319,17 @@ main <- function() {
   fwrite(unmapped_tcpa, file.path(out_dir, "stage1_tcpa_unmapped_component.tsv"), sep = "\t")
 
   if (nrow(manifest) != 22L || any(manifest$N_RNA_Programs != 9L) ||
-      any(manifest[Is_MOFA_Pilot == TRUE, N_RNA_TopVar] != 200L) ||
-      any(manifest[Is_MOFA_Pilot == TRUE, N_RPPA_MOFA] < 100L) ||
       any(manifest$Bundle_Bytes <= 0)) stop("数值bundle QA失败")
 
-  report <- c(
-    "# Stage 1共用数值输入构建报告 V0.1", "",
-    "日期：2026-08-10  ",
-    "状态：`PASS_SHARED_NUMERIC_INPUT_GATE / TRACK_A_READY / MOFA_INPUT_READY_ENGINE_MISSING`", "",
-    sprintf("已为22个癌种生成独立bundle；每癌固定9个去定义RNA程序、10个TCPA蛋白通路、6个CNV指标、3个基因组指标和%s个免疫注释。", unique(manifest$N_Immune)),
-    sprintf("5个MOFA试点癌种各生成200个无监督高变非定义RNA特征；合格RPPA feature范围为%s–%s。", min(manifest[Is_MOFA_Pilot == TRUE, N_RPPA_MOFA]), max(manifest[Is_MOFA_Pilot == TRUE, N_RPPA_MOFA])),
-    "官方TCPA表中HER3_pY1298在当前RPPA平台缺测，已登记并从RTK pathway score中排除；其余通路组件门槛满足。",
-    "所有对象按癌种和患者构建，不合并不同癌种；免疫和预测药敏未参与MOFA特征选择。", "",
-    "当前R4.5.1缺少MOFA2，因此输入已冻结但未训练MOFA。线路A可直接进入正式关联。"
-  )
-  writeLines(report, file.path(out_dir, "stage1_shared_numeric_input_report_v0.1.md"), useBytes = TRUE)
+  writeLines(c("Programme-feature numeric inputs prepared.",
+               paste0("cancers=", nrow(manifest)),
+               "rna_programmes_per_cancer=9",
+               "consumer=06_run_programme_feature_associations.R"),
+             file.path(out_dir, "programme_numeric_input_summary.txt"))
 
   log_event("DONE", "Stage 1共用数值输入完成", list(
     runtime_sec = round(as.numeric(difftime(Sys.time(), started, units = "secs")), 1),
-    cancers = nrow(manifest), pilot_cancers = paste(pilot_cancers, collapse = ","),
+    cancers = nrow(manifest),
     output = out_dir
   ))
 }

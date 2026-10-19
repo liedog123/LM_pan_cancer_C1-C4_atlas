@@ -12,8 +12,10 @@ The first DCF record contains Task, Layer and Output-Root plus Input-* shared va
 
 E1 and E3 use separate records and output directories through the same implementation. Definition-construction tasks may be skipped when using the adopted definitions. Independent Acid distributions, CNV modes, Bassez sensitivities and signature correlations are not automatically chained.
 
-The PRISM task now contains only s03 and requires three platform inputs; old task DCFs containing internal-support fields must be replaced with the current template. Shared-axis adjustment now takes only the complete drug results, shared-patient manifest, prediction audit and prediction directory. Survival s00 prepares the original group-selected object without intermediate preview plots; the formal survival steps remain.
+The PRISM task now contains only s03 and requires three platform inputs; old task DCFs containing internal-support fields must be replaced with the current template. Shared-axis adjustment now takes only the complete drug results, shared-patient manifest, prediction audit and prediction directory. Programme-feature preparation s05 no longer requires the pilot or definition fields of the old MOFA input route. Survival s00 prepares the original group-selected object without intermediate preview plots; the formal survival steps remain.
 
 The CD8 export task also generates reported quadrant and trajectory source tables. Use its matching prepared metadata and expression inputs; it is not only a cosmetic plotting step. Final manuscript composite assembly is maintained with the manuscript.
 
 The [reproduction routes](reproduction_routes.md) map tasks to the paper and state their starting boundaries. Structural/source checks do not establish numerical equality to frozen study results. Earlier interfaces remain in Git history; public history is not rewritten.
+
+The source_config column in the step index records the original template name for provenance; current executable task configurations are the paths in task_index.tsv.
