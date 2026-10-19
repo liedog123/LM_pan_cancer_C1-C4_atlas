@@ -1,0 +1,65 @@
+# Purpose: icb input/output paths; parameters remain in the analysis code.
+# Copy outside the checkout, replace SET_ME, and select only the required stage(s).
+# Use --plan first. No study inputs are distributed in this repository.
+
+Module: icb
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+Input-icb_three_cohort.program_membership: SET_ME_SUPPLEMENTARY_DIR/program_nondefinition_gene_membership.tsv.gz
+Input-icb_three_cohort.gene_alias: SET_ME_SUPPLEMENTARY_DIR/gene_symbol_alias_manifest.tsv
+Input-liu_icb.clinical_workbook: ../SET_ME/clinical_workbook.xlsx
+
+Stage: icb_three_cohort.s01
+lm12_members: ../SET_ME/lm12_members.tsv
+program_membership: @input/icb_three_cohort.program_membership
+gene_alias: @input/icb_three_cohort.gene_alias
+prior_ipilimumab: ../SET_ME/prior_ipilimumab.tsv
+riaz_expression: ../SET_ME/riaz_expression.rds
+riaz_metadata: ../SET_ME/riaz_metadata.tsv
+gide_expression: ../SET_ME/gide_expression.rds
+gide_metadata: ../SET_ME/gide_metadata.tsv
+braun_hold_metadata: ../SET_ME/braun_hold_metadata.tsv
+output_dir: @root/icb_three_cohort/s01
+
+Stage: icb_three_cohort.s02
+output_dir: @root/icb_three_cohort/s02
+patient_scores: @icb_three_cohort.s01/B_baseline_patient_inclusion_and_scores.tsv
+
+Stage: icb_three_cohort.s03
+lm12_members: ../SET_ME/lm12_members.input
+program_membership: @input/icb_three_cohort.program_membership
+gene_alias: @input/icb_three_cohort.gene_alias
+output_dir: @root/icb_three_cohort/s03
+official_workbook: ../SET_ME/official_workbook.input
+local_clinical_crosswalk: ../SET_ME/local_clinical_crosswalk.input
+
+Stage: icb_three_cohort.s04
+output_dir: @root/icb_three_cohort/s04
+patient_scores: @icb_three_cohort.s03/B_Braun_patient_inclusion_and_scores.tsv
+member_coverage: @icb_three_cohort.s03/B_Braun_member_coverage.tsv
+
+Stage: icb_three_cohort.s05
+output_dir: @root/icb_three_cohort/s05
+riaz_gide_preparation_dir: @icb_three_cohort.s01/
+riaz_gide_analysis_dir: @icb_three_cohort.s02/
+braun_preparation_dir: @icb_three_cohort.s03/
+braun_analysis_dir: @icb_three_cohort.s04/
+
+Stage: liu_icb.s06
+source_rda: ../SET_ME/source_rda.rda
+official_s2_tpm: ../SET_ME/official_s2_tpm.txt
+clinical_workbook: @input/liu_icb.clinical_workbook
+gene_alias: SET_ME_SUPPLEMENTARY_DIR/gene_symbol_alias_manifest.tsv
+lm12_members: ../SET_ME/lm12_members.tsv
+program_membership: SET_ME_SUPPLEMENTARY_DIR/program_nondefinition_gene_membership.tsv.gz
+output_dir: @root/liu_icb/s06
+
+Stage: liu_icb.s07
+clinical_workbook: @input/liu_icb.clinical_workbook
+output_dir: @root/liu_icb/s07
+outcome_blind_assignments: @liu_icb.s06/Liu_103_119_outcome_blind_state_assignments.tsv
+
+Stage: gide_c1.s08
+patient_scores: ../SET_ME/patient_scores.tsv
+frozen_program_members: ../SET_ME/frozen_program_members.tsv
+lm12_members: ../SET_ME/lm12_members.tsv
+output_dir: @root/gide_c1/s08

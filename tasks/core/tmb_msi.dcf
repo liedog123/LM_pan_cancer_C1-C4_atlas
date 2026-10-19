@@ -1,8 +1,0 @@
-Task: tmb_msi
-Layer: core
-Output-Root: SET_ME_NEW_OUTPUT_ROOT
-
-Step: s02
-Script: genomics/02_run_tmb_msi_c1c4.R
-readiness_dir: SET_ME/prepared_readiness
-output_dir: @root/tmb_msi/s02

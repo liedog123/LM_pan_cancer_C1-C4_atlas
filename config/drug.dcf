@@ -1,0 +1,50 @@
+# Purpose: drug input/output paths; parameters remain in the analysis code.
+# Copy outside the checkout, replace SET_ME, and select only the required stage(s).
+# Use --plan first. No study inputs are distributed in this repository.
+
+Module: drug
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+Input-programme_feature_associations.program_clusters: SET_ME_SUPPLEMENTARY_DIR/mrna_c1c4_extreme_cluster_registry_v0.2_20260730.tsv
+
+Stage: predicted_drug_response.s01
+canonical_labels: SET_ME_INPUTS/canonical_labels.csv
+model_input: SET_ME_INPUTS/gdsc_model_input.rds
+prediction_dir: SET_ME_INPUTS/corrected_csv
+drug_annotation: SET_ME_INPUTS/drug_annotation_master.tsv
+output_dir: @root/predicted_drug_response/s01
+
+Stage: drug_crossplatform.s03
+gdsc_response: SET_ME/GDSC2_fitted_dose_response.xlsx
+prism_curve: SET_ME/secondary-screen-dose-response-top8-filtered.csv
+prism_cell_metadata: SET_ME/secondary-screen-cell-line-info.csv
+output_dir: @root/drug_crossplatform/s03
+
+Stage: drug_shared_axis.s04
+drug_complete: SET_ME/drug_c1_vs_c4_by_cancer_complete.tsv
+shared_patient: SET_ME/shared_C1C4_patient_manifest.tsv
+prediction_audit: SET_ME/drug_prediction_input_audit.tsv
+prediction_dir: SET_ME/corrected_predictions
+output_dir: @root/drug_shared_axis/s04
+
+Stage: programme_feature_associations.s05
+patient: SET_ME_patient
+mrna: SET_ME_mrna
+program_genes: SET_ME_SUPPLEMENTARY_DIR/mrna_c1c4_extreme_display_genes_v0.2_20260730.tsv
+program_clusters: @input/programme_feature_associations.program_clusters
+rppa: SET_ME_rppa
+rppa_dict: SET_ME_SUPPLEMENTARY_DIR/rppa_antibody_dictionary_frozen_v0.2_20260723.tsv
+tcpa: SET_ME_SUPPLEMENTARY_DIR/akbani2014_supp_table13_official_pathway_members.tsv
+tmb: SET_ME_tmb
+mutation: SET_ME_mutation
+cnv: SET_ME_cnv
+estimate: SET_ME_estimate
+cibersort: SET_ME_cibersort
+mcpcounter: SET_ME_mcpcounter
+drug: SET_ME_drug
+output_dir: @root/programme_feature_associations/s05
+
+Stage: programme_feature_associations.s06
+program_clusters: @input/programme_feature_associations.program_clusters
+output_dir: @root/programme_feature_associations/s06
+numeric_manifest: @programme_feature_associations.s05/stage1_numeric_bundle_manifest.tsv
+bundle_dir: @programme_feature_associations.s05/bundles

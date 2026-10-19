@@ -1,0 +1,149 @@
+# Purpose: molecular input/output paths; parameters remain in the analysis code.
+# Copy outside the checkout, replace SET_ME, and select only the required stage(s).
+# Use --plan first. No study inputs are distributed in this repository.
+
+Module: molecular
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+Input-lncrna_rppa.lncrna_registry: SET_ME_SUPPLEMENTARY_DIR/lncrna_grch38_113_annotation_registry_v0.2_20260723.tsv
+Input-lncrna_rppa.antibody_dictionary: SET_ME_SUPPLEMENTARY_DIR/rppa_antibody_dictionary_frozen_v0.2_20260723.tsv
+Input-boundary_gsea.definition_registry: SET_ME_SUPPLEMENTARY_DIR/stage3_definition_gene_registry_v0.1_20260723.tsv
+Input-boundary_gsea.immune_registry: SET_ME_SUPPLEMENTARY_DIR/candidate_immune_gene_set_registry.tsv
+Input-boundary_gsea.immune_membership: SET_ME_SUPPLEMENTARY_DIR/candidate_immune_gene_sets_long.tsv
+Input-boundary_gsea.lm12_membership: SET_ME_lm12_membership
+Input-boundary_gsea.hallmark_gmt: SET_ME_hallmark_gmt
+
+Stage: mrna_programmes.s01
+patient_manifest: SET_ME_patient_manifest
+mrna_rdata: SET_ME_mrna_rdata
+definition_registry: SET_ME_SUPPLEMENTARY_DIR/stage3_definition_gene_registry_v0.1_20260723.tsv
+readiness_decision: SET_ME_readiness_decision
+output_dir: @root/mrna_programmes/s01
+
+Stage: mrna_programmes.s02
+output_dir: @root/mrna_programmes/s02
+model_dir: @mrna_programmes.s01/01_within_cancer_models
+hallmark_gmt: SET_ME_hallmark_gmt
+reactome_gmt: SET_ME_reactome_gmt
+go_bp_gmt: SET_ME_go_bp_gmt
+c7_gmt: SET_ME_c7_gmt
+immport_gmt: SET_ME_immport_gmt
+
+Stage: mrna_programmes.s16
+output_dir: @root/mrna_programmes/s16
+ora_significant: @mrna_programmes.s02/02_recurrence_ora/ora/mrna_ovr_c1c4_ora_significant_v0.2_20260729.tsv
+recurrent_directional_genes: @mrna_programmes.s02/02_recurrence_ora/recurrence/mrna_ovr_c1c4_recurrent_directional_genes_v0.2_20260729.tsv
+significant_term_gene_membership: @mrna_programmes.s02/02_recurrence_ora/source_data/mrna_ovr_c1c4_significant_term_gene_membership_v0.2_20260729.tsv.gz
+upstream_qa: @mrna_programmes.s02/02_recurrence_ora/qa/mrna_ovr_c1c4_recurrence_ora_machine_qa_v0.2_20260729.tsv
+
+Stage: lncrna_rppa.s04
+patient_manifest: SET_ME/patient_manifest.tsv
+lncrna_dir: SET_ME/lncrna_expression
+lncrna_registry: @input/lncrna_rppa.lncrna_registry
+rppa_matrix: SET_ME/protein.gz
+antibody_dictionary: @input/lncrna_rppa.antibody_dictionary
+definition_registry: SET_ME_SUPPLEMENTARY_DIR/stage3_definition_gene_registry_v0.1_20260723.tsv
+readiness_decision: SET_ME/readiness_decision.tsv
+output_dir: @root/lncrna_rppa/s04
+
+Stage: lncrna_rppa.s03
+antibody_dictionary: @input/lncrna_rppa.antibody_dictionary
+output_dir: @root/lncrna_rppa/s03
+model_dir: @lncrna_rppa.s04/01_feature_models
+tcpa_table13: SET_ME_SUPPLEMENTARY_DIR/akbani2014_supp_table13_official_pathway_members.tsv
+
+Stage: lncrna_rppa.s05
+output_dir: @root/lncrna_rppa/s05
+model_dir: @lncrna_rppa.s04/01_feature_models
+
+Stage: lncrna_rppa.s06
+patient_manifest: SET_ME/patient_manifest
+lncrna_dir: SET_ME/lncrna_dir
+lncrna_registry: @input/lncrna_rppa.lncrna_registry
+output_dir: @root/lncrna_rppa/s06
+recurrent_candidates: @lncrna_rppa.s05/01_lncrna_recurrence/stage3_lncrna_c1c4_recurrent_candidates_v0.1_20260730.tsv
+mrna_rdata: SET_ME/mrna_rdata
+
+Stage: lncrna_rppa.s07
+output_dir: @root/lncrna_rppa/s07
+recurrent_candidates: @lncrna_rppa.s05/01_lncrna_recurrence/stage3_lncrna_c1c4_recurrent_candidates_v0.1_20260730.tsv
+coexpression_dir: @lncrna_rppa.s06/01_gene_level_coexpression
+
+Stage: lncrna_rppa.s08
+output_dir: @root/lncrna_rppa/s08
+edge_recurrence_dir: @lncrna_rppa.s07/02_edge_recurrence
+hallmark_gmt: SET_ME/hallmark_gmt
+reactome_gmt: SET_ME/reactome_gmt
+go_bp_gmt: SET_ME/go_bp_gmt
+c7_gmt: SET_ME/c7_gmt
+immport_gmt: SET_ME/immport_gmt
+
+Stage: boundary_gsea.s09
+patient_manifest: SET_ME_patient_manifest
+mrna_rdata: SET_ME_mrna_rdata
+definition_registry: @input/boundary_gsea.definition_registry
+readiness_decision: SET_ME_readiness_decision
+output_dir: @root/boundary_gsea/s09
+
+Stage: boundary_gsea.s10
+definition_registry: @input/boundary_gsea.definition_registry
+output_dir: @root/boundary_gsea/s10
+model_dir: @boundary_gsea.s09/01_within_cancer_models
+immune_registry: @input/boundary_gsea.immune_registry
+immune_membership: @input/boundary_gsea.immune_membership
+lm12_membership: @input/boundary_gsea.lm12_membership
+hallmark_gmt: @input/boundary_gsea.hallmark_gmt
+
+Stage: boundary_gsea.s11_E1
+definition_registry: @input/boundary_gsea.definition_registry
+output_dir: @root/boundary_gsea/s11_E1
+model_dir: @boundary_gsea.s09/01_within_cancer_models
+immune_registry: @input/boundary_gsea.immune_registry
+immune_membership: @input/boundary_gsea.immune_membership
+lm12_membership: @input/boundary_gsea.lm12_membership
+hallmark_gmt: @input/boundary_gsea.hallmark_gmt
+edge_id: E1
+
+Stage: boundary_gsea.s11_E3
+definition_registry: @input/boundary_gsea.definition_registry
+output_dir: @root/boundary_gsea/s11_E3
+model_dir: @boundary_gsea.s09/01_within_cancer_models
+immune_registry: @input/boundary_gsea.immune_registry
+immune_membership: @input/boundary_gsea.immune_membership
+lm12_membership: @input/boundary_gsea.lm12_membership
+hallmark_gmt: @input/boundary_gsea.hallmark_gmt
+edge_id: E3
+
+Stage: boundary_gsea.s12
+definition_registry: @input/boundary_gsea.definition_registry
+output_dir: @root/boundary_gsea/s12
+e1_dir: @boundary_gsea.s11_E1/results/edges/E1
+e2_dir: @boundary_gsea.s10/results
+e3_dir: @boundary_gsea.s11_E3/results/edges/E3
+
+Stage: mrna_rppa_concordance.s13
+mrna_model_dir: SET_ME_mrna_model_dir
+mrna_recurrence: SET_ME_mrna_recurrence
+mrna_display: SET_ME_mrna_display
+rppa_within: SET_ME_rppa_within
+rppa_recurrence: SET_ME_rppa_recurrence
+rppa_display: SET_ME_rppa_display
+cancer_gate: SET_ME_cancer_gate
+antibody_dictionary: SET_ME_SUPPLEMENTARY_DIR/rppa_antibody_dictionary_frozen_v0.2_20260723.tsv
+output_dir: @root/mrna_rppa_concordance/s13
+
+Stage: subtype_context.s14
+patient_manifest: SET_ME_PATIENT_MANIFEST
+canonical_labels: SET_ME_CANONICAL_LABELS
+immune_subtypes: SET_ME_IMMUNE_SUBTYPES
+molecular_subtypes: SET_ME_MOLECULAR_SUBTYPES
+program_membership: SET_ME_SUPPLEMENTARY_DIR/program_nondefinition_gene_membership.tsv.gz
+mrna_rdata: SET_ME_MRNA_RDATA
+tcpa_table13: SET_ME_SUPPLEMENTARY_DIR/akbani2014_supp_table13_official_pathway_members.tsv
+antibody_dictionary: SET_ME_SUPPLEMENTARY_DIR/rppa_antibody_dictionary_frozen_v0.2_20260723.tsv
+rppa_matrix: SET_ME_RPPA_MATRIX
+output_dir: @root/subtype_context/s14
+
+Stage: subtype_context.s15
+output_dir: @root/subtype_context/s15
+patient_mapping: @subtype_context.s14/01_subtype_context_preparation/A_patient_inclusion_and_subtype_mapping.tsv
+programme_scores: @subtype_context.s14/01_subtype_context_preparation/A_patient_programme_scores.tsv

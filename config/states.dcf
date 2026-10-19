@@ -1,0 +1,120 @@
+# Purpose: states input/output paths; parameters remain in the analysis code.
+# Copy outside the checkout, replace SET_ME, and select only the required stage(s).
+# Use --plan first. No study inputs are distributed in this repository.
+
+Module: states
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+Input-signature_correlations.final_genes: SET_ME/formal/Fig1A_signature_genes.tsv
+Input-signature_correlations.tumor_scores: SET_ME/intermediates/tumor_diver_gsva_list.rdata
+Input-signature_correlations.tpm_root: SET_ME/tpm
+Input-acid_ag_groups.final_genes: SET_ME/frozen/final_selected_genes.rdata
+Input-acid_ag_groups.tpm_root: SET_ME/tpm/output_mRNA_lncRNA_expr
+Input-external_bulk_enrichment.expression_dir: ../inputs/SET_ME_GEO_expression_files
+Input-external_bulk_enrichment.lm12_manifest: ../inputs/SET_ME_lm_imm_12_manifest.tsv
+Input-external_bulk_enrichment.lm12_genes: ../inputs/SET_ME_lm_imm_12_gene_sets_long.tsv
+
+Stage: acid_signature_selection.s01
+candidate_genes: SET_ME_SUPPLEMENTARY_DIR/candidate_acid_lactate_genes_142_v0.1_20260831.tsv
+deg_results: ../inputs/SET_ME_tumor_normal_DEGs_list.rdata
+tumor_scores: ../inputs/SET_ME_tumor_diver_gsva_list.rdata
+tpm_root: ../inputs/SET_ME_project_TPM_files
+output_dir: @root/acid_signature_selection/s01
+
+Stage: signature_correlations.s02
+final_genes: @input/signature_correlations.final_genes
+tumor_scores: @input/signature_correlations.tumor_scores
+tpm_root: @input/signature_correlations.tpm_root
+output_dir: @root/signature_correlations/s02
+
+Stage: signature_correlations.s03
+final_genes: @input/signature_correlations.final_genes
+tumor_scores: @input/signature_correlations.tumor_scores
+tpm_root: @input/signature_correlations.tpm_root
+output_dir: @root/signature_correlations/s03
+
+Stage: acid_ag_groups.s01
+final_genes: @input/acid_ag_groups.final_genes
+clinical_table: SET_ME/clinical/Survival_SupplementalTable_S1_20171025_xena_sp
+tpm_root: @input/acid_ag_groups.tpm_root
+output_dir: @root/acid_ag_groups/s01
+
+Stage: acid_ag_groups.s02
+final_genes: @input/acid_ag_groups.final_genes
+tpm_root: @input/acid_ag_groups.tpm_root
+output_dir: @root/acid_ag_groups/s02
+acid_scores: @acid_ag_groups.s01/per_acid_scores_list.rdata
+clinical_data: @acid_ag_groups.s01/clinical_data_list.rdata
+
+Stage: acid_ag_groups.s03
+tpm_root: @input/acid_ag_groups.tpm_root
+output_dir: @root/acid_ag_groups/s03
+acid_scores: @acid_ag_groups.s01/per_acid_scores_list.rdata
+clinical_groups: @acid_ag_groups.s02/clinical_data_cluster_list.rdata
+
+Stage: acid_ph_correlations.s04
+acid_scores: SET_ME/new_outputs/acid_scores/per_acid_scores_list.rdata
+tpm_root: SET_ME/tpm/output_mRNA_lncRNA_expr
+output_dir: @root/acid_ph_correlations/s04
+
+Stage: acid_distributions.s05
+clinical_groups: SET_ME/clinical_data_cluster_list.rdata
+final_genes: SET_ME/final_selected_genes.rdata
+integrated_expression: SET_ME/EB++AdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena.gz
+output_dir: @root/acid_distributions/s05
+
+Stage: acid_distributions.s06
+output_dir: @root/acid_distributions/s06
+validation_data: SET_ME/clinical_validation_data.Rdata
+
+Stage: tcga_immune_discovery.s01
+processed_data: ../inputs/SET_ME_pancancer_full_data_list.rdata
+output_dir: @root/tcga_immune_discovery/s01
+
+Stage: tcga_immune_discovery.s02
+output_dir: @root/tcga_immune_discovery/s02
+deg_results_dir: @tcga_immune_discovery.s01/
+immport_gmt: ../inputs/SET_ME_immPort.gmt
+
+Stage: lm12_definition.s01
+gsea_results_dir: SET_ME/formal_gsea/individual_full_results
+output_dir: @root/lm12_definition/s01
+
+Stage: lm12_definition.s02
+output_dir: @root/lm12_definition/s02
+all_votes: @lm12_definition.s01/all_pathway_votes_original_like.tsv
+gene_summary: @lm12_definition.s01/original_like_gene_set_summary.tsv
+gene_long: @lm12_definition.s01/original_like_gene_sets_long.tsv
+candidate_terms: SET_ME_SUPPLEMENTARY_DIR/curated_candidate_pathway_terms.tsv
+family_dictionary: SET_ME_SUPPLEMENTARY_DIR/candidate_pathway_family_dictionary.tsv
+
+Stage: c1c4_state_assignment.s01
+processed_data: SET_ME/processed/pancancer_full_data_list.rdata
+lm12_manifest: SET_ME/definitions/lm_imm_12_manifest.tsv
+lm12_genes: SET_ME/definitions/lm_imm_12_gene_sets_long.tsv
+output_dir: @root/c1c4_state_assignment/s01
+
+Stage: c1c4_state_assignment.s02
+output_dir: @root/c1c4_state_assignment/s02
+assignment_labels: @c1c4_state_assignment.s01/ag3ig2_c1c4_sample_labels.csv
+feature_metadata: @c1c4_state_assignment.s01/lm12_feature_metadata.tsv
+
+Stage: c1c4_state_assignment.s03
+output_dir: @root/c1c4_state_assignment/s03
+assignment_labels: @c1c4_state_assignment.s01/ag3ig2_c1c4_sample_labels.csv
+feature_metadata: @c1c4_state_assignment.s01/lm12_feature_metadata.tsv
+axis_scores: @c1c4_state_assignment.s02/c1c4_axis_sample_scores.tsv.gz
+
+Stage: external_bulk_enrichment.s01
+expression_dir: @input/external_bulk_enrichment.expression_dir
+metadata_dir: ../inputs/SET_ME_external_metadata
+final_genes: ../inputs/SET_ME_final_selected_genes.rdata
+lm12_manifest: @input/external_bulk_enrichment.lm12_manifest
+lm12_genes: @input/external_bulk_enrichment.lm12_genes
+output_dir: @root/external_bulk_enrichment/s01
+
+Stage: external_bulk_enrichment.s02
+expression_dir: @input/external_bulk_enrichment.expression_dir
+lm12_manifest: @input/external_bulk_enrichment.lm12_manifest
+lm12_genes: @input/external_bulk_enrichment.lm12_genes
+output_dir: @root/external_bulk_enrichment/s02
+score_dir: @external_bulk_enrichment.s01/

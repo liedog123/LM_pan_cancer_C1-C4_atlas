@@ -1,9 +1,0 @@
-Task: acid_ph_correlations
-Layer: core
-Output-Root: SET_ME_NEW_OUTPUT_ROOT
-
-Step: s04
-Script: acid_ag_preprocessing/04_correlate_formal_ph_panel.R
-acid_scores: SET_ME/new_outputs/acid_scores/per_acid_scores_list.rdata
-tpm_root: SET_ME/tpm/output_mRNA_lncRNA_expr
-output_dir: @root/acid_ph_correlations/s04

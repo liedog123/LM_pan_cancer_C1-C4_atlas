@@ -1,0 +1,73 @@
+# Purpose: cd8 input/output paths; parameters remain in the analysis code.
+# Copy outside the checkout, replace SET_ME, and select only the required stage(s).
+# Use --plan first. No study inputs are distributed in this repository.
+
+Module: cd8
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+Input-cd8_response.count_rdata: SET_ME/inputs/cd8_counts.RData
+Input-cd8_response.lm12_membership: SET_ME/inputs/lm12_membership.tsv
+Input-cd8_response.msigdb_dir: SET_ME/inputs/msigdb_dir
+
+Stage: cd8_qc.s01
+count_rdata: SET_ME/inputs/cd8_counts.RData
+output_dir: @root/cd8_qc/s01
+
+Stage: cd8_response.s02
+count_rdata: @input/cd8_response.count_rdata
+output_dir: @root/cd8_response/s02
+
+Stage: cd8_response.s03
+count_rdata: @input/cd8_response.count_rdata
+output_dir: @root/cd8_response/s03
+lm12_membership: @input/cd8_response.lm12_membership
+msigdb_dir: @input/cd8_response.msigdb_dir
+melanoma_counts: SET_ME/inputs/CD8_T_pseudobulk_counts.rds
+melanoma_deg: SET_ME/inputs/cd8_t_c1_vs_c4__gene_level_deg.tsv.gz
+bulk_de_dir: @cd8_response.s02/
+
+Stage: cd8_response.s04
+count_rdata: @input/cd8_response.count_rdata
+output_dir: @root/cd8_response/s04
+lm12_membership: @input/cd8_response.lm12_membership
+msigdb_dir: @input/cd8_response.msigdb_dir
+bulk_de_dir: @cd8_response.s02/
+bridge_dir: @cd8_response.s03/
+
+Stage: cd8_figures.s05
+bulk_de_dir: @root/cd8_response/s02
+leading_edge_file: @root/cd8_response/s03/gsea_leading_edge_long.tsv
+output_dir: @root/cd8_figures/s05
+
+Stage: cd8_figures.s06
+bulk_de_dir: @root/cd8_response/s02
+output_dir: @root/cd8_figures/s06
+
+Stage: cd8_figures.s07
+output_dir: @root/cd8_figures/s07
+pca_coordinates: @root/cd8_qc/s01/pca_coordinates.tsv
+pca_variance: @root/cd8_qc/s01/pca_variance.tsv
+
+Stage: cd8_figures.s08
+output_dir: @root/cd8_figures/s08
+gsea_three_contrasts: @root/cd8_response/s04/gsea_three_contrasts.tsv
+
+Stage: cd8_figures.s09
+bulk_de_dir: @root/cd8_response/s02
+output_dir: @root/cd8_figures/s09
+bridge_dir: @root/cd8_response/s03
+hallmark_gmt: SET_ME_msigdb/h.all.v2025.1.Hs.symbols.gmt
+
+Stage: cd8_figures.s10
+leading_edge_file: @root/cd8_response/s03/gsea_leading_edge_long.tsv
+output_dir: @root/cd8_figures/s10
+trajectory_source_file: SET_ME_trajectory_source_file
+
+Stage: cd8_figures.s11
+bulk_de_dir: @root/cd8_response/s02
+output_dir: @root/cd8_figures/s11
+sample_sheet: SET_ME_sample_sheet
+filtered_logcpm: @root/cd8_qc/s01/filtered_tmm_logCPM.rds
+
+Stage: cd8_figures.s12
+output_dir: @root/cd8_figures/s12
+marker_expression: @root/cd8_response/s04/cd8_marker_expression.tsv

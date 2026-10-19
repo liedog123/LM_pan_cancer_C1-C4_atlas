@@ -1,0 +1,155 @@
+# Purpose: single_cell input/output paths; parameters remain in the analysis code.
+# Copy outside the checkout, replace SET_ME, and select only the required stage(s).
+# Use --plan first. No study inputs are distributed in this repository.
+
+Module: single_cell
+Output-Root: SET_ME_NEW_OUTPUT_ROOT
+Input-single_cell_pseudobulk.exclusion_genes: SET_ME_SUPPLEMENTARY_DIR/definition_exclusion_genes.tsv
+Input-bassez_sensitivity.sample_sheet: SET_ME_sample_sheet
+Input-bassez_sensitivity.counts_manifest: SET_ME_counts_manifest
+Input-bassez_sensitivity.model_contract: SET_ME_model_contract
+Input-bassez_sensitivity.counts_dir: SET_ME_counts_dir
+
+Stage: single_cell_states.s04
+seurat_object: SET_ME/seurat_object
+cell_metadata: SET_ME/cell_metadata
+sample_metadata: SET_ME/sample_metadata
+celltype_to_broad: SET_ME/celltype_to_broad
+compartment_manifest: SET_ME/compartment_manifest
+sample_inclusion_rule: SET_ME/sample_inclusion_rule
+treatment_map: SET_ME/treatment_map
+lm12_manifest: SET_ME/lm12_manifest
+lm12_gene_long: SET_ME/lm12_gene_long
+output_dir: @root/single_cell_states/s04
+
+Stage: single_cell_states.s05
+seurat_object: SET_ME/seurat_object
+output_dir: @root/single_cell_states/s05
+initial_bundle: @single_cell_states.s04/initial_scoring_bundle.rds
+
+Stage: single_cell_states.s01
+output_dir: @root/single_cell_states/s01
+refine_bundle: @single_cell_states.s05/studywise_refine_bundle.rds
+
+Stage: single_cell_states.s02
+seurat_object: SET_ME_seurat_object
+output_dir: @root/single_cell_states/s02
+refine_bundle: @single_cell_states.s05/studywise_refine_bundle.rds
+selected_genes: SET_ME_selected_genes
+
+Stage: single_cell_states.s03
+cell_metadata: SET_ME_cell_metadata
+sample_metadata: SET_ME_sample_metadata
+output_dir: @root/single_cell_states/s03
+ig_cell_states: @single_cell_states.s01/cell_level_local_ig_states.tsv.gz
+ag_cell_states: @single_cell_states.s02/cell_level_acid_scores_and_ag_states.tsv.gz
+
+Stage: single_cell_pseudobulk.s06
+seurat_object: SET_ME_seurat_object
+cell_metadata: SET_ME_cell_metadata
+sample_mapping: SET_ME_sample_mapping
+exclusion_genes: @input/single_cell_pseudobulk.exclusion_genes
+g1_summary: SET_ME_g1_summary
+output_dir: @root/single_cell_pseudobulk/s06
+
+Stage: single_cell_pseudobulk.s07
+output_dir: @root/single_cell_pseudobulk/s07
+sample_sheet: @single_cell_pseudobulk.s06/pseudobulk_sample_sheet.tsv.gz
+counts_manifest: @single_cell_pseudobulk.s06/pseudobulk_counts_manifest.tsv
+counts_gate: @single_cell_pseudobulk.s06/g2a_counts_gate_summary.tsv
+counts_dir: @single_cell_pseudobulk.s06/counts
+
+Stage: single_cell_pseudobulk.s08
+exclusion_genes: @input/single_cell_pseudobulk.exclusion_genes
+output_dir: @root/single_cell_pseudobulk/s08
+counts_manifest: @single_cell_pseudobulk.s06/pseudobulk_counts_manifest.tsv
+counts_dir: @single_cell_pseudobulk.s06/counts
+technical_gate: @single_cell_pseudobulk.s07/g2a_technical_gate_summary.tsv
+model_contract: @single_cell_pseudobulk.s07/model_design_contract.tsv
+sample_sets_dir: @single_cell_pseudobulk.s07/sample_sets
+
+Stage: single_cell_pseudobulk.s09
+output_dir: @root/single_cell_pseudobulk/s09
+counts_manifest: @single_cell_pseudobulk.s06/pseudobulk_counts_manifest.tsv
+counts_dir: @single_cell_pseudobulk.s06/counts
+model_contract: @single_cell_pseudobulk.s07/model_design_contract.tsv
+sample_sets_dir: @single_cell_pseudobulk.s07/sample_sets
+primary_gate: @single_cell_pseudobulk.s08/g2b_overall_model_gate.tsv
+primary_gene_results_dir: @single_cell_pseudobulk.s08/gene_results
+
+Stage: single_cell_pseudobulk.s10
+output_dir: @root/single_cell_pseudobulk/s10
+primary_gate: @single_cell_pseudobulk.s08/g2b_overall_model_gate.tsv
+primary_gene_results_dir: @single_cell_pseudobulk.s08/gene_results
+stability_gate: @single_cell_pseudobulk.s09/g2c_stability_gate.tsv
+candidates: @single_cell_pseudobulk.s09/stability_candidate_genes.tsv.gz
+sensitivity: @single_cell_pseudobulk.s09/sensitivity_gene_concordance.tsv.gz
+cohort_meta: @single_cell_pseudobulk.s09/cohort_meta_summary.tsv.gz
+loso: @single_cell_pseudobulk.s09/loso_gene_summary.tsv.gz
+target_stability_summary: @single_cell_pseudobulk.s09/target_stability_summary.tsv
+legacy_deg: ../SET_ME/all_findmarkers_results.tsv.gz
+
+Stage: single_cell_pseudobulk.s11
+output_dir: @root/single_cell_pseudobulk/s11
+primary_gene_results_dir: @single_cell_pseudobulk.s08/gene_results
+evidence_gate: @single_cell_pseudobulk.s10/g2d_evidence_gate.tsv
+integrated_gene_evidence: @single_cell_pseudobulk.s10/integrated_gene_evidence.tsv.gz
+target_gene_evidence_summary: @single_cell_pseudobulk.s10/target_gene_evidence_summary.tsv
+hallmark_gmt: ../SET_ME/h.all.v2025.1.Hs.symbols.gmt
+reactome_gmt: ../SET_ME/c2.cp.reactome.v2025.1.Hs.symbols.gmt
+gobp_gmt: ../SET_ME/c5.go.bp.v2024.1.Hs.symbols.gmt
+c7_gmt: ../SET_ME/c7.all.v2025.1.Hs.symbols.gmt
+legacy_c7: ../SET_ME/c7_preranked_gsea_all_results.tsv
+
+Stage: bassez_sensitivity.s12
+cell_metadata: SET_ME_cell_metadata
+sample_metadata: SET_ME_sample_metadata
+sample_labels: SET_ME_sample_labels
+sample_compartment_counts: SET_ME_sample_compartment_counts
+sample_sheet: @input/bassez_sensitivity.sample_sheet
+counts_manifest: @input/bassez_sensitivity.counts_manifest
+model_contract: @input/bassez_sensitivity.model_contract
+definition_genes: SET_ME_SUPPLEMENTARY_DIR/definition_exclusion_genes.tsv
+program_scores: SET_ME_program_scores
+program_catalog: SET_ME_SUPPLEMENTARY_DIR/program_catalog_frozen_v0.1.tsv
+formal_centers: SET_ME_formal_centers
+formal_pathway_evidence: SET_ME_formal_pathway_evidence
+fig6_pathway_source: SET_ME_SUPPLEMENTARY_DIR/fig6_d_pathway_selection.tsv
+gmt_hallmark: SET_ME_gmt_hallmark
+gmt_reactome: SET_ME_gmt_reactome
+gmt_gobp: SET_ME_gmt_gobp
+counts_dir: @input/bassez_sensitivity.counts_dir
+sample_sets_dir: SET_ME_sample_sets_dir
+output_dir: @root/bassez_sensitivity/s12
+
+Stage: bassez_sensitivity.s13
+sample_sheet: @input/bassez_sensitivity.sample_sheet
+counts_manifest: @input/bassez_sensitivity.counts_manifest
+model_contract: @input/bassez_sensitivity.model_contract
+counts_dir: @input/bassez_sensitivity.counts_dir
+output_dir: @root/bassez_sensitivity/s13
+marker_panel: SET_ME_SUPPLEMENTARY_DIR/fig6_c_compact_functional_gene_selection.tsv
+
+Stage: melanoma_pseudobulk.s14
+contract: SET_ME_SUPPLEMENTARY_DIR/stage4_melanoma_program_validation_contract_v0.1_20260722.tsv
+stage3_gate: SET_ME_stage3_gate
+source_object: SET_ME_source_object
+frozen_cell_metadata: SET_ME_frozen_cell_metadata
+sample_labels: SET_ME_sample_labels
+readiness: SET_ME_readiness
+catalog: SET_ME_SUPPLEMENTARY_DIR/program_catalog_frozen_v0.1.tsv
+membership_full: SET_ME_SUPPLEMENTARY_DIR/program_gene_membership.tsv.gz
+membership_nondefinition: SET_ME_SUPPLEMENTARY_DIR/program_nondefinition_gene_membership.tsv.gz
+output_dir: @root/melanoma_pseudobulk/s14
+
+Stage: melanoma_pseudobulk.s15
+output_dir: @root/melanoma_pseudobulk/s15
+sample_sheet: @melanoma_pseudobulk.s14/melanoma_pseudobulk_sample_sheet.tsv
+counts_manifest: @melanoma_pseudobulk.s14/melanoma_pseudobulk_counts_manifest.tsv
+program_catalog: SET_ME_SUPPLEMENTARY_DIR/program_catalog_frozen_v0.1.tsv
+program_membership: SET_ME_SUPPLEMENTARY_DIR/program_nondefinition_gene_membership.tsv.gz
+fig6_pathways: SET_ME_SUPPLEMENTARY_DIR/fig6_d_pathway_selection.tsv
+hallmark_gmt: SET_ME_hallmark_gmt
+reactome_gmt: SET_ME_reactome_gmt
+gobp_gmt: SET_ME_gobp_gmt
+counts_dir: @melanoma_pseudobulk.s14/counts
