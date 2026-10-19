@@ -1,20 +1,11 @@
-expected_file	delivery	supplementary_assignment
-akbani2014_supp_table13_official_pathway_members.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-candidate_acid_lactate_genes_142_v0.1_20260831.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-candidate_immune_gene_set_registry.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-candidate_immune_gene_sets_long.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-candidate_pathway_family_dictionary.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-curated_candidate_pathway_terms.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-definition_exclusion_genes.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-fig6_c_compact_functional_gene_selection.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-fig6_d_pathway_selection.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-gene_symbol_alias_manifest.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-lncrna_grch38_113_annotation_registry_v0.2_20260723.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-mrna_c1c4_extreme_cluster_registry_v0.2_20260730.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-mrna_c1c4_extreme_display_genes_v0.2_20260730.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-program_catalog_frozen_v0.1.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-program_gene_membership.tsv.gz	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-program_nondefinition_gene_membership.tsv.gz	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-rppa_antibody_dictionary_frozen_v0.2_20260723.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-stage3_definition_gene_registry_v0.1_20260723.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
-stage4_melanoma_program_validation_contract_v0.1_20260722.tsv	Paper supplementary materials	Pending exact worksheet or companion-file assignment
+supplementary_table	worksheet_or_content	purpose	use
+Supplementary Table 1	Signature_selection	Candidate-level stage summaries	Consult the submitted supplement
+Supplementary Table 2	Pathway_definitions; Gene_membership	LM12 definitions and members	Consult the submitted supplement
+Supplementary Table 3	Subtype_adjusted_results	Adjusted programme results, RNA members and five-protein EMT definition	Consult the programme membership and RPPA EMT definition sections
+Supplementary Table 4	CNV_regions	Region summaries and labelled gene-level CNV events	Consult the gene-level statistics section
+Supplementary Table 5	Molecular_associations	Nine RNA programme memberships and displayed protein-score definitions	Use the C1/C4 reference population and eligibility rules in Methods
+Supplementary Table 6	Cohort_summary	Sample-to-state mapping and AG2 compartment-model inclusion	Consult the sample assignments section
+Supplementary Table 6	Guide; SC_sensitivity	Standard gene-set sources; programme definitions and actual members	Use the indicated FULL or NONDEFINITION membership
+Supplementary Table 6	ICB_state_response; ICB_programme_results	ICB final results	Retain cohort, population and model labels
+Supplementary Table 7	Experimental_design; GSEA_results; Early_late_summary	CD8 design, reported enrichment and temporal summaries	Use the contrast labels and testing families in the workbook
+Supplementary Table 7	Hypoxia_gene_results; CD8_markers; Gene_set_definitions	Reported gene effects, CD8 markers and programme definitions	Obtain CD8 study data through the accession reported in the manuscript when available

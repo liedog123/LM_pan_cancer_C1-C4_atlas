@@ -1,15 +1,13 @@
 # Input delivery
 
-The nineteen reference tables will be supplied through the paper's supplementary materials, not duplicated on GitHub. See supplementary_inputs.tsv for expected filenames. Exact worksheet/companion-file assignments and the eventual public link are pending. Do not assume all are already in existing Supplementary Tables 1-7.
+The manuscript and supplementary tables document study definitions, memberships, sample assignments and reported results. The supplementary content map identifies the corresponding tables and worksheets.
 
-Supplementary Table 2 Pathway_definitions and Gene_membership supply the documented LM12 interfaces when completely exported as UTF-8 TSV. The published nine genes supply membership-only TSV/RData interfaces. These formats do not reconstruct selection statistics.
+For execution, copy the relevant task configuration and set paths to the study expression/count matrices, sample metadata and provider resources required by that task. Consult the manuscript Methods for data sources and processing, and the task and step indexes for configuration fields.
 
-Adopted columns, rows, order, statistical metadata and original source tokens are retained. Display worksheets do not automatically replace programme memberships or ordering tables. Third-party source/license attribution remains with the supplementary materials.
+Supplementary Table 2 Pathway_definitions and Gene_membership provide the LM12 definitions and membership. Supplementary Table 1 Signature_selection provides candidate-level stage summaries. The seven condensed workbooks contain 46 worksheets. Supplementary Table 3 includes the RNA programme members and five-protein EMT score definition used for subtype-adjusted comparisons. Supplementary Table 6 provides sample-to-state mappings, AG2 compartment-model inclusion, programme definitions and members, and selected final results in eight worksheets. Supplementary Table 4 includes gene-level statistics for the labelled CNV events. Supplementary Table 5 lists the nine RNA programme memberships and protein-score weights for the displayed molecular associations.
 
-Study-prepared inputs remain separate: bulk expression/clinical/deconvolution and frozen labels; RNA/RPPA/genomic matrices/readiness; corrected drug predictions, model inputs and PRISM coverage; processed single-cell/G1/melanoma interfaces; harmonized ICB outcomes/crosswalks; CD8 counts/design and coupled melanoma products.
+Scientific result tables retain their reported scope. Configure each analysis with matching data, identifiers and processing versions. Study-data numerical reproduction has not been performed for this code release.
 
-Provider downloads/accessions do not automatically recreate prepared interfaces. Exact GMT/annotation versions are obtained under provider terms. No generic available-upon-request promise is made.
+CD8 data deposition is pending ethics approval; accession details will be supplied in the manuscript when available.
 
-Unpackaged preparation boundaries include initial DEG/tumour scores, historical tumour-normal objects, G1 mapping/gates, PRISM coverage, and CD8 trajectory/audited metadata. Task grouping does not create these producers. CD8 matrix/metadata are locally prepared, not deposited or public; ethics remains under formal review.
-
-See the [baseline input inventory](https://github.com/liedog123/LM_pan_cancer_C1-C4_atlas/tree/7fc95d5e205c7dfced0ffdfa4b17945bf62d13e5/docs/input_access_and_permissions.md) for exact consumers/sources. Its historical reference-payload release decisions are superseded here by the supplementary-only delivery choice.
+See [task usage](task_usage.md), [task index](task_index.tsv), [step index](step_index.tsv) and [supplementary content map](supplementary_inputs.tsv).

@@ -30,6 +30,6 @@ Obtain matching inputs and edit a copied task configuration first. Example place
 See [usage](docs/task_usage.md), [input delivery](docs/input_delivery.md), [task index](docs/task_index.tsv) and [step mapping](docs/step_index.tsv).
 The existing [result mapping](https://github.com/liedog123/LM_pan_cancer_C1-C4_atlas/tree/7fc95d5e205c7dfced0ffdfa4b17945bf62d13e5/docs/result_output_mapping.md) and [environment evidence](https://github.com/liedog123/LM_pan_cancer_C1-C4_atlas/tree/7fc95d5e205c7dfced0ffdfa4b17945bf62d13e5/environment/README.md) remain the provenance sources.
 
-MIT applies to the code. The nineteen reference tables are delivered through the paper's supplementary-material channel. No reference payload, GMT, expression matrix, FASTQ or patient object is included.
+MIT applies to the code. Supplementary tables provide study definitions, memberships and reported results; see the [supplementary content map](docs/supplementary_inputs.tsv). Obtain study data through the sources specified in the manuscript and set the required paths in a copied task configuration.
 
-Last updated: 2026-10-13
+Last updated: 2026-10-19

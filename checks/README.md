@@ -11,5 +11,3 @@ Environment: author-selected remote R4.5.1. Date: 2026-10-13.
 See interface_checks.tsv for results. Local test paths are replaced with descriptive directory tokens. Fixtures and development scripts remain in the project temporary workspace, outside this candidate.
 
 No study object, expression/count matrix, FASTQ, statistical model, GSEA body or frozen result was loaded or recomputed. Structural checks do not establish real schemas, output-value equivalence, all analysis dependencies or end-to-end reproduction.
-
-The nineteen reference tables are not bundled; only their expected supplementary-material filenames are listed.
