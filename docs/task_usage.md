@@ -14,7 +14,7 @@ The first DCF record contains Task, Layer and Output-Root plus Input-* shared va
 
 `edge_id` is a scalar; other retained fields are paths. E1 and E3 use separate records/output roots through the same retained implementation. E2 remains independent. Statistical families and supplied P/FDR are preserved.
 
-Independent Acid distributions, CNV burden modes, Bassez sensitivities and signature correlations are not chained. The lncRNA/RPPA task retains separate branches after shared preparation. CellChat retains rep1 and its distinct rep2-10 seeds.
+Independent Acid distributions, CNV burden modes, Bassez sensitivities and signature correlations are not chained. The lncRNA/RPPA task retains separate branches after shared preparation. The retained CellChat branch keeps rep1 and its distinct rep2-10 seeds; it is outside the current manuscript and submitted supplements.
 
 CD8 figures use the same Output-Root convention as cd8_qc/cd8_response, or explicit prepared paths. Hypoxia trajectory and audited sample metadata remain separately prepared inputs. Descriptive table generation stays with figures and is required for complete paper reproduction.
 
@@ -23,3 +23,7 @@ Structural/source inspection does not establish real-data compatibility or equal
 ## Existing users
 
 The previous numbered workflows and their 90 DCF examples remain available at commit 7fc95d5. This release uses one dispatcher and 36 task DCFs; legacy DCFs are not task configs. Copy the matching task template and transfer the exact input paths. Retained implementations are mapped in step_index.tsv. Use independent new output directories; matching frozen intermediates can replace earlier producers.
+
+## Manuscript scope
+
+Internal drug-model performance is not a reported result in the current manuscript. The drug_crossplatform task retains s02 because s03 reads its preparation outputs. To run s03 from existing preparations, supply matching paths for internal_support_summary and drug_identity in a copied task configuration and select --steps s03. Keep this dependency when running the original route; the submitted PRISM comparisons are mapped to Supplementary Table 5.

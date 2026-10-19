@@ -16,7 +16,7 @@ This code-only release provides the task interface below. Interface checks are r
 | Fig. 6 | single_cell_states, single_cell_pseudobulk, melanoma_pseudobulk, icb_three_cohort |
 | Fig. 7 | cd8_qc, cd8_response, cd8_figures |
 
-Supporting tasks reproduce reported supplementary results and remain part of full-paper reproduction. Definition construction can be skipped when starting downstream from adopted frozen definitions.
+Task coverage follows the retained implementation routes and is broader than the current manuscript. Bassez CellChat and internal drug-model performance results are outside the submitted manuscript and supplements. The drug_crossplatform route retains its preparation dependency for the PRISM step; consult task usage when starting from matching prepared inputs. Definition construction can be skipped when starting downstream from adopted frozen definitions.
 
 ```sh
 Rscript run.R --list
