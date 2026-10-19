@@ -10,4 +10,6 @@ Scientific result tables retain their reported scope. Configure each analysis wi
 
 CD8 data deposition is pending ethics approval; accession details will be supplied in the manuscript when available.
 
+The release begins at the prepared-input boundaries described in [reproduction routes](reproduction_routes.md); it does not contain original oncoPredict training/prediction or raw sequencing preprocessing. The supplementary workbooks are not automatically executable replacements for the configured study objects.
+
 See [task usage](task_usage.md), [task index](task_index.tsv), [step index](step_index.tsv) and [supplementary content map](supplementary_inputs.tsv).

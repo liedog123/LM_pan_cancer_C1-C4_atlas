@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# Base-R metadata checks precede dependency loading and study reads.
+# Purpose: Construct compartment pseudobulks and fit the reported patient-level comparisons.
+# Task: single_cell_pseudobulk; step: s08
+# Inputs (DCF fields): technical_gate,model_contract,counts_manifest,exclusion_genes,counts_dir,sample_sets_dir
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task single_cell_pseudobulk --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 08_run_primary_pseudobulk_models.R --config PATH [--check-config]\n       Rscript 08_run_primary_pseudobulk_models.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

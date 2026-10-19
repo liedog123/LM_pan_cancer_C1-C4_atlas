@@ -1,13 +1,12 @@
-# Interface verification
+# Code verification
 
-Environment: author-selected remote R4.5.1. Date: 2026-10-13.
+Environment: R 4.5.1. Date: 2026-10-19.
 
-- 90 retained implementations are byte-identical to the public 7fc95d5 code snapshot; see source_copy_check.tsv.
-- 36 task configurations cover 91 execution records and 90 distinct implementations. E1 and E3 require two separate records for the same implementation.
-- 61 interface checks passed: dispatcher parsing/help/list, all 36 task plans, invalid CLI/configuration rejection, genuine CD8 metadata-only checks with a fake non-RData file, and synthetic process-order/link/failure/output-protection checks.
-- Spaces, apostrophes and DCF-folded paths are supported. Child configs use absolute paths without line wrapping.
-- Synthetic failures stop later steps and never receive a COMPLETED event; nonempty outputs remain unchanged.
+- 35 task configurations, 87 execution records and 86 distinct implementation scripts; E1 and E3 share one implementation.
+- 315 checks passed in [interface_checks.tsv](interface_checks.tsv): all implementation/entry syntax, all implementation headers and help modes, all 35 task plans, task/index coverage, obsolete-task rejection, the three extracted implementations metadata-only checks, invalid fields, input/output overlap and nonempty-output protection.
+- [source_scope_check.tsv](source_scope_check.tsv) records 83 unchanged scientific bodies after stripping only their opening comment blocks, plus three scoped extractions.
+- Ten [retained-logic checks](retained_logic_check.tsv) compare the extracted source blocks: the original PRISM five-drug comparison and BH family, shared-axis 18-cancer/three-drug computations, and survival group selection and serialized object.
 
-See interface_checks.tsv for results. Local test paths are replaced with descriptive directory tokens. Fixtures and development scripts remain in the project temporary workspace, outside this candidate.
+Repeat interface checks with `Rscript checks/run_checks.R /path/to/new/report.tsv`. The report path must be new and outside this checkout. Synthetic metadata fixtures are created in a temporary directory and removed. No analysis packages or study objects are loaded; the checks do not execute fitting, enrichment, scientific statistical bodies or plotting.
 
-No study object, expression/count matrix, FASTQ, statistical model, GSEA body or frozen result was loaded or recomputed. Structural checks do not establish real schemas, output-value equivalence, all analysis dependencies or end-to-end reproduction.
+The source comparison baseline is public-code commit c0790c516fd18a0f859fdad59ae961a7d51f0a75. Historical check records remain in Git history and the author internal archive. This update does not establish real study-input schema compatibility, numerical equality to frozen results or end-to-end reproduction. The starting-input and upstream-processing boundaries are stated in the [reproduction guide](../docs/reproduction_routes.md).

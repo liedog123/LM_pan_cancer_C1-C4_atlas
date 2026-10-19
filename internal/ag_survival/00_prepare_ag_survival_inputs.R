@@ -1,10 +1,15 @@
 #!/usr/bin/env Rscript
-# Continue source AG1 versus AG3 overall-survival analyses from prepared inputs.
+# Purpose: Reproduce AG1-versus-AG3 survival inputs, Cox models and formal KM source data.
+# Task: ag_survival; step: s00
+# Inputs (DCF fields): projects_data,clinical_groups
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task ag_survival --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
 
 options(stringsAsFactors = FALSE, warn = 1)
 usage <- function() {
-  cat("Usage: Rscript 00_prepare_ag_km.R --config PATH [--check-config]\n",
-      "       Rscript 00_prepare_ag_km.R --help\n\n",
+  cat("Usage: Rscript 00_prepare_ag_survival_inputs.R --config PATH [--check-config]\n",
+      "       Rscript 00_prepare_ag_survival_inputs.R --help\n\n",
       "DCF fields: projects_data, clinical_groups, output_dir.\n",
       "Relative paths resolve from the configuration file's directory.\n",
       "--check-config checks file metadata only: no input loading, dependencies or output creation.\n",
@@ -103,9 +108,6 @@ if ("--check-config" %in% flags) {
   quit(status = 0L)
 }
 
-suppressPackageStartupMessages({
-  library(survival); library(survminer); library(ggplot2); library(dplyr); library(ggpubr)
-})
 load_named <- function(path, name) {
   env <- new.env(parent = emptyenv())
   load(path, envir = env)
@@ -114,59 +116,13 @@ load_named <- function(path, name) {
 }
 projects <- load_named(projects_file, "projects")
 clinical_data_cluster_list <- load_named(clinical_file, "clinical_data_cluster_list")
-dir.create(file.path(out_dir, "KM"), recursive = TRUE, showWarnings = FALSE)
-
-# 初始化列表以存储每个癌症类型的生存数据和显著的癌症类型
+# 保持原始AG1/AG3分组与行顺序；正式KM及Cox在后续步骤计算。
+dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 survival_data_list <- list()
-significant_projects <- c()
-
-# 主循环进行数据准备和生存分析
 for (project in projects) {
-  # 筛选数据，只保留 High 和 Low 组
   survival_data <- clinical_data_cluster_list[[project]]
   survival_data <- survival_data[survival_data$Group %in% c("High", "Low"), ]
-  
-  # 存储生存数据到列表中
   survival_data_list[[project]] <- survival_data
-  
-  # 生存分析
-  surv_object <- Surv(time = survival_data$OS.time, event = survival_data$OS)
-  fit <- survfit(surv_object ~ Group, data = survival_data)
-  
-  # 计算 p 值并检查显著性
-  pval <- surv_pvalue(fit)$pval
-  if (pval < 0.05) {
-    significant_projects <- c(significant_projects, project)
-  }
-  
-  # 去除 "TCGA-"前缀
-  project <- sub("TCGA-", "", project)
-  
-  # 绘制生存曲线
-  p <- ggsurvplot(
-    fit,
-    data = survival_data,
-    pval = TRUE,                         # 显示 p 值
-    legend.title = "Group",               # 图例标题
-    legend.labs = c("High", "Low"),      # 图例标签
-    palette = c("red", "blue"), 
-    title = paste(project),
-    xlab = "Time (days)",
-    ylab = "Survival Probability",
-    ggtheme = theme_classic()            # 使用白色背景
-  )
-  
-  
-  # 确保保存生存曲线的文件夹存在
-  km_dir <- file.path(out_dir, "KM")
-  
-  # 保存生存曲线
-  ggsave(filename = file.path(km_dir, paste0(project, "_KM_plot.png")), plot = p$plot, width = 8, height = 6, dpi = 300)
 }
-
-# 将生存数据列表和显著的癌症类型保存为 Rdata 文件
 save(survival_data_list, file = file.path(out_dir, "tow_group_clinical_data_list.rdata"))
-save(significant_projects, file = file.path(out_dir, "significant_projects.rdata"))
 writeLines(capture.output(sessionInfo()), file.path(out_dir, "sessionInfo.txt"))
-
-

@@ -1,6 +1,12 @@
 #!/usr/bin/env Rscript
-# 路径元信息检查先于研究输入读取与分析依赖加载。
-usage <- function() cat("Usage: Rscript 03_run_prism_crossplatform.R --config PATH [--check-config]\n       Rscript 03_run_prism_crossplatform.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
+# Purpose: Compare GDSC IC50 and PRISM AUC across matched cell lines for the five-drug family.
+# Task: drug_crossplatform; step: s03
+# Inputs (DCF fields): gdsc_response,prism_curve,prism_cell_metadata
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task drug_crossplatform --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
+usage <- function() cat("Usage: Rscript 03_run_prism_concordance.R --config PATH [--check-config]\n       Rscript 03_run_prism_concordance.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }
 if (!(length(args) %in% c(2L,3L)) || args[1L] != "--config" ||
@@ -35,7 +41,7 @@ config_keys <- trimws(sub(":.*$", "", config_lines[
   grepl("^[^[:space:]#][^:]*:", config_lines)]))
 if(anyDuplicated(config_keys)) stop("DCF fields must not repeat.")
 cfg <- read.dcf(config_path)
-fields <- c("gdsc_response", "prism_curve", "prism_cell_metadata", "internal_support_summary", "drug_identity", "prism_coverage", "discovery_counts", "output_dir")
+fields <- c("gdsc_response", "prism_curve", "prism_cell_metadata", "output_dir")
 if(nrow(cfg)!=1L || !setequal(colnames(cfg),fields) || ncol(cfg)!=length(fields)) stop("DCF must contain exactly the documented fields.")
 cfg <- setNames(as.character(cfg[1L,fields]),fields)
 if(anyNA(cfg) || any(!nzchar(trimws(cfg))) || any(grepl("SET_ME",cfg,fixed=TRUE))) stop("Replace placeholders.")
@@ -80,16 +86,8 @@ suppressPackageStartupMessages(library(readxl))
 gdsc_response_path <- unname(paths["gdsc_response"])
 prism_curve_path <- unname(paths["prism_curve"])
 prism_cell_path <- unname(paths["prism_cell_metadata"])
-internal_qc_path <- unname(paths["internal_support_summary"])
-identity_path <- unname(paths["drug_identity"])
-prism_coverage_path <- unname(paths["prism_coverage"])
-discovery_path <- unname(paths["discovery_counts"])
 result_dir <- out_dir
 
-target_drugs <- c(
-  "Sorafenib", "Bleomycin", "VE821", "Wnt-C59",
-  "Vinorelbine", "667880", "Linsitinib", "Palbociclib"
-)
 secondary_drugs <- c(
   "Sorafenib", "VE821", "Vinorelbine", "Linsitinib", "Palbociclib"
 )
@@ -142,8 +140,7 @@ safe_cor_test <- function(x, y, method) {
 
 message("[Stage5-crossplatform] 核验输入")
 required_paths <- c(
-  gdsc_response_path, prism_curve_path, prism_cell_path, internal_qc_path,
-  identity_path, prism_coverage_path, discovery_path
+  gdsc_response_path, prism_curve_path, prism_cell_path
 )
 if (!all(file.exists(required_paths))) {
   stop("缺少输入: ", paste(required_paths[!file.exists(required_paths)], collapse = ", "))
@@ -181,7 +178,7 @@ prism$cell_key <- normalize_cell(prism$ccle_name, prism = TRUE)
 prism$auc <- suppressWarnings(as.numeric(prism$auc))
 prism$passed_str_profiling <- tolower(as.character(prism$passed_str_profiling)) == "true"
 
-target_key_map <- setNames(target_drugs, normalize_drug(target_drugs))
+target_key_map <- setNames(secondary_drugs, normalize_drug(secondary_drugs))
 secondary_keys <- normalize_drug(secondary_drugs)
 
 gdsc_target <- gdsc[
@@ -372,84 +369,6 @@ write_tsv(
   file.path(result_dir, "gdsc_prism_crossplatform_summary.tsv")
 )
 
-message("[Stage5-crossplatform] 生成8种药物证据等级的未冻结续跑候选")
-internal_qc <- read.delim(internal_qc_path, check.names = FALSE)
-identity <- read.delim(identity_path, check.names = FALSE)
-prism_coverage <- read.delim(prism_coverage_path, check.names = FALSE)
-discovery <- read.delim(discovery_path, check.names = FALSE)
-
-evidence <- data.frame(drug = target_drugs, stringsAsFactors = FALSE)
-evidence <- merge(
-  evidence,
-  discovery[, c(
-    "drug", "n_tested_cancers", "n_sig_cancers", "n_C1_sensitive",
-    "n_C4_sensitive", "median_abs_delta_sig", "context_dependent"
-  )],
-  by = "drug", all.x = TRUE, sort = FALSE
-)
-evidence <- merge(
-  evidence,
-  identity[, c("drug", "official_target", "official_pathway", "identity_status")],
-  by = "drug", all.x = TRUE, sort = FALSE
-)
-evidence <- merge(
-  evidence,
-  internal_qc[, c("drug", "median_spearman", "internal_modelability_pass")],
-  by = "drug", all.x = TRUE, sort = FALSE
-)
-evidence <- merge(
-  evidence,
-  prism_coverage[, c("drug", "prism_support_scope")],
-  by = "drug", all.x = TRUE, sort = FALSE
-)
-evidence <- merge(
-  evidence,
-  cross_summary[, c(
-    "drug", "n_matched_cell_lines", "spearman_rho", "spearman_fdr",
-    "external_direction_support", "external_status"
-  )],
-  by = "drug", all.x = TRUE, sort = FALSE
-)
-evidence <- evidence[match(target_drugs, evidence$drug), , drop = FALSE]
-
-evidence$external_status[is.na(evidence$external_status)] <- ifelse(
-  evidence$prism_support_scope[is.na(evidence$external_status)] ==
-    "PRIMARY_COVERAGE_ONLY",
-  "PRIMARY_COVERAGE_ONLY",
-  "NO_PRISM_MATCH"
-)
-evidence$external_direction_support[
-  is.na(evidence$external_direction_support)
-] <- FALSE
-
-evidence$subtype_direction <- ifelse(
-  evidence$n_C1_sensitive == evidence$n_sig_cancers,
-  "C1_SENSITIVE_ALL_SIGNIFICANT_CANCERS",
-  ifelse(
-    evidence$n_C4_sensitive == evidence$n_sig_cancers,
-    "C4_SENSITIVE_ALL_SIGNIFICANT_CANCERS",
-    "CONTEXT_DEPENDENT"
-  )
-)
-evidence$evidence_grade <- ifelse(
-  grepl("UNRESOLVED", evidence$identity_status),
-  "HOLD_UNRESOLVED",
-  ifelse(
-    evidence$internal_modelability_pass &
-      evidence$external_direction_support,
-    "STRICT_SUPPORTED",
-    ifelse(
-      evidence$internal_modelability_pass,
-      "PARTIAL_SUPPORT",
-      "INTERNAL_ONLY"
-    )
-  )
-)
-write_tsv(
-  evidence,
-  file.path(result_dir, "top8_final_evidence_grade.tsv")
-)
-
 cell_info_ids <- unique(prism_cell$depmap_id)
 selected_ids <- unique(prism_selected$depmap_id)
 expected_screen_ok <- all(
@@ -474,7 +393,6 @@ qa <- data.frame(
     "all_five_drugs_have_at_least_30_matched_cell_lines",
     "bh_family_contains_all_five_comparable_drugs",
     "no_ambiguous_normalized_names_in_matched_pairs",
-    "final_evidence_table_contains_all_eight_drugs",
     "no_prism_cell_line_assigned_c1_or_c4",
     "no_source_object_modified"
   ),
@@ -487,7 +405,6 @@ qa <- data.frame(
     all(cross_summary$n_matched_cell_lines >= 30L),
     sum(eligible) == length(secondary_drugs),
     nrow(ambiguous_matched) == 0L,
-    identical(evidence$drug, target_drugs),
     TRUE,
     TRUE
   ),

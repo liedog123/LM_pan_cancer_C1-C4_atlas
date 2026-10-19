@@ -1,5 +1,10 @@
 #!/usr/bin/env Rscript
-# Fig. 1C核心计算；路径检查不加载研究输入。
+# Purpose: Summarise Acid_Score across cancers and tumour-normal comparisons.
+# Task: acid_distributions; step: s05
+# Inputs (DCF fields): clinical_groups,final_genes,integrated_expression
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task acid_distributions --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
 
 options(stringsAsFactors = FALSE)
 usage <- function() {

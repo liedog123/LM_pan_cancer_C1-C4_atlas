@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# 路径元信息检查先于研究输入读取与分析依赖加载。
+# Purpose: Aggregate significant gene-level copy-number differences into descriptive genomic regions.
+# Task: cnv_regions; step: s05
+# Inputs (DCF fields): manifest,thresholded_cnv,gene_coordinates,cytoband
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task cnv_regions --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 05_run_cnv_alteration_regions.R --config PATH [--check-config]\n       Rscript 05_run_cnv_alteration_regions.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

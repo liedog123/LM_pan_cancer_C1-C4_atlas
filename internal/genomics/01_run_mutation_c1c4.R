@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# 路径元信息检查先于研究输入读取与分析依赖加载。
+# Purpose: Compare patient-level somatic mutation frequencies between C1 and C4.
+# Task: somatic_mutations; step: s01
+# Inputs (DCF fields): callable_dir,mutation_events
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task somatic_mutations --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 01_run_mutation_c1c4.R --config PATH [--check-config]\n       Rscript 01_run_mutation_c1c4.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

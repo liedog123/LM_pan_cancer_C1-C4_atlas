@@ -1,5 +1,10 @@
 #!/usr/bin/env Rscript
-# Continue Stage 2 immune ecology from prepared inputs.
+# Purpose: Compare immune and stromal features with the specified state contrasts and testing families.
+# Task: immune_ecology; step: s01
+# Inputs (DCF fields): canonical_labels,patient_manifest,estimate_scores,cibersort_scores,mcpcounter_scores,acid_genes,lm12_genes
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task immune_ecology --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
 
 options(stringsAsFactors = FALSE, warn = 1)
 usage <- function() {

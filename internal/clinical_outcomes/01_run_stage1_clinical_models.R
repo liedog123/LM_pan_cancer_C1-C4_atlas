@@ -1,5 +1,10 @@
 #!/usr/bin/env Rscript
-# Continue patient-level C1-C4 clinical outcomes from prepared inputs.
+# Purpose: Compare C1-C4 clinical features and overall-survival models.
+# Task: c1c4_clinical; step: s01
+# Inputs (DCF fields): patient_manifest,canonical_labels,clinical_data
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task c1c4_clinical --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
 
 options(stringsAsFactors = FALSE, warn = 1)
 usage <- function() {

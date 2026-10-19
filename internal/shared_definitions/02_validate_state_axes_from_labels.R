@@ -1,5 +1,10 @@
 #!/usr/bin/env Rscript
-# Continue state-axis validation or canonical-label export from upstream tables.
+# Purpose: Construct IG and C1-C4 labels and export the canonical patient assignments.
+# Task: c1c4_state_assignment; step: s02
+# Inputs (DCF fields): assignment_labels,feature_metadata
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task c1c4_state_assignment --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
 
 options(stringsAsFactors = FALSE)
 usage <- function() {

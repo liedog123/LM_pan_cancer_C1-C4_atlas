@@ -1,0 +1,36 @@
+task_id	paper_result	decision	reason	steps
+acid_signature_selection	Fig. 1; Supplementary Table 1	retain	Adopted multi-stage nine-gene selection; not a replaceable generic DEG call.	1
+signature_correlations	Fig. 1; Supplementary Table 1	retain	Signature and tumour-programme correlations reported in Supplementary Fig. 1.	2
+acid_ag_groups	Fig. 1; Supplementary Table 1	retain	Acid scores, cancer-wise AG order and processed-input handoff define downstream comparisons.	3
+acid_ph_correlations	Fig. 1; Supplementary Table 1	retain	Fixed pH transcript panel and correlation scope.	1
+acid_distributions	Fig. 1; Supplementary Table 1	retain	Reported cancer-level and tumour-normal score comparisons.	2
+tcga_immune_discovery	Fig. 2; Supplementary Table 2	retain	AG-associated discovery supplies the pathway-definition route.	2
+lm12_definition	Fig. 2; Supplementary Table 2	retain	Cross-cancer voting, stable genes and adopted family definitions.	2
+c1c4_state_assignment	Fig. 2; Supplementary Table 2	retain	Ordered axes and canonical sample/patient labels are central definitions.	3
+external_bulk_enrichment	Fig. 2; Supplementary Table 2	retain	External cohort enrichment is a reported supporting result.	2
+ag_survival	Fig. 1; Supplementary Table 1	retain	Paper-specific AG endpoints, complete-case rules, covariates and cross-cancer FDR; formal KM exports.	4
+c1c4_clinical	Fig. 2; Supplementary Table 2	retain	C1/C4 patient eligibility, clinical models and survival meta-analysis.	1
+immune_ecology	Fig. 2; Supplementary Table 2	retain	Within-cancer and cross-cancer immune/stromal tests with fixed state and testing scopes.	2
+mrna_programmes	Fig. 3; Supplementary Table 3	retain	Reported recurrent mRNAs and their functional representative selections.	3
+lncrna_rppa	Fig. 3; Supplementary Table 3	retain	Reported lncRNA recurrence, linked mRNA functions and RPPA features.	6
+boundary_gsea	Fig. 3; Supplementary Table 3	retain	Reported fixed adjacent-state contrasts and full testing families.	5
+mrna_rppa_concordance	Fig. 3; Supplementary Table 3	retain	RNA-protein comparison remains in Supplementary Table 3.	1
+subtype_context	Fig. 3; Supplementary Table 3	retain	Immune-subtype and PAM50 adjustment remains in Supplementary Fig. 5 and Table 3.	2
+somatic_mutations	Fig. 4; Supplementary Table 4	retain	Reported patient-level mutation selection and Fisher/BH comparisons.	1
+tmb_msi	Fig. 4; Supplementary Table 4	retain	Reported burden/MSI transformations, thresholds and eligibility.	1
+cnv_burden	Fig. 4; Supplementary Table 4	retain	Reported two-state and four-state CNV burden comparisons.	2
+cnv_regions	Fig. 4; Supplementary Table 4	retain	Gene-level copy-number tests and descriptive region aggregation.	1
+predicted_drug_response	Fig. 5; Supplementary Table 5	retain	Reported C1/C4 inference across all evaluable drugs within each cancer.	1
+drug_crossplatform	Fig. 5; Supplementary Table 5	retain	Reported three drugs retain the original five-drug PRISM correction family.	1
+drug_shared_axis	Fig. 5; Supplementary Table 5	retain	Reported leave-one-drug-out PC1 correction for three drugs across 18 cancers.	1
+programme_feature_associations	Fig. 5; Supplementary Table 5	retain	Reported Fig. 5C associations require complete within-cancer testing families.	2
+single_cell_states	Fig. 6 and ICB; Supplementary Table 6	retain	Reported AUCell refinement, compartment labels and sample-level voting.	5
+single_cell_pseudobulk	Fig. 6 and ICB; Supplementary Table 6	retain	Count/model eligibility and stability evidence feed the reported programme analyses.	6
+bassez_sensitivity	Fig. 6 and ICB; Supplementary Table 6	retain	Reported study-exclusion and marker sensitivity remains in Supplementary Fig. 10.	2
+melanoma_pseudobulk	Fig. 6 and ICB; Supplementary Table 6	retain	Patient-level CD8 and other cell-type programme comparisons remain reported.	2
+icb_three_cohort	Fig. 6 and ICB; Supplementary Table 6	retain	Outcome-blind state assignment and primary response comparisons are reported.	5
+liu_icb	Fig. 6 and ICB; Supplementary Table 6	retain	Separate post hoc and timing sensitivity remains reported in Table 6.	2
+gide_c1	Fig. 6 and ICB; Supplementary Table 6	retain	Exploratory within-C1 programme-response result remains in Supplementary Fig. 9.	1
+cd8_qc	Fig. 7; Supplementary Table 7	retain	Sample metadata, filtered expression and PCA support reported figures.	1
+cd8_response	Fig. 7; Supplementary Table 7	retain	Donor-adjusted contrasts, programme testing and HCl comparisons support main conclusions.	3
+cd8_figures	Fig. 7; Supplementary Table 7	retain	Also produces reported quadrant and trajectory tables; not dispensable preview-only code.	8

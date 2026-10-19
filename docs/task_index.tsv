@@ -21,14 +21,13 @@ tmb_msi	core	tmb msi	tasks/core/tmb_msi.dcf	1
 cnv_burden	core	cnv burden	tasks/core/cnv_burden.dcf	2
 cnv_regions	core	cnv regions	tasks/core/cnv_regions.dcf	1
 predicted_drug_response	core	predicted drug response	tasks/core/predicted_drug_response.dcf	1
-drug_crossplatform	supporting	drug crossplatform	tasks/supporting/drug_crossplatform.dcf	2
+drug_crossplatform	supporting	drug crossplatform	tasks/supporting/drug_crossplatform.dcf	1
 drug_shared_axis	supporting	drug shared axis	tasks/supporting/drug_shared_axis.dcf	1
 programme_feature_associations	core	programme feature associations	tasks/core/programme_feature_associations.dcf	2
 single_cell_states	core	single cell states	tasks/core/single_cell_states.dcf	5
 single_cell_pseudobulk	core	single cell pseudobulk	tasks/core/single_cell_pseudobulk.dcf	6
 bassez_sensitivity	supporting	bassez sensitivity	tasks/supporting/bassez_sensitivity.dcf	2
 melanoma_pseudobulk	core	melanoma pseudobulk	tasks/core/melanoma_pseudobulk.dcf	2
-bassez_cellchat	supporting	bassez cellchat	tasks/supporting/bassez_cellchat.dcf	3
 icb_three_cohort	core	icb three cohort	tasks/core/icb_three_cohort.dcf	5
 liu_icb	supporting	liu icb	tasks/supporting/liu_icb.dcf	2
 gide_c1	supporting	gide c1	tasks/supporting/gide_c1.dcf	1

@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# 路径元信息检查先于研究输入读取与分析依赖加载。
+# Purpose: Fit mRNA state comparisons and derive recurrent genes and functional programmes.
+# Task: mrna_programmes; step: s01
+# Inputs (DCF fields): patient_manifest,mrna_rdata,definition_registry,readiness_decision
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task mrna_programmes --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 01_run_mrna_models.R --config PATH [--check-config]\n       Rscript 01_run_mrna_models.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

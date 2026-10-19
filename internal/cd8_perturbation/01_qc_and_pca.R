@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# Base-R metadata checks precede dependency loading and study reads.
+# Purpose: Prepare CD8 sample metadata, filtered expression and PCA summaries.
+# Task: cd8_qc; step: s01
+# Inputs (DCF fields): count_rdata
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task cd8_qc --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 01_qc_and_pca.R --config PATH [--check-config]\n       Rscript 01_qc_and_pca.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

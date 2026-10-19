@@ -1,5 +1,10 @@
 #!/usr/bin/env Rscript
-# Continue TCGA discovery from separately obtained processed intermediates.
+# Purpose: Identify acidification-associated immune pathway enrichment in TCGA.
+# Task: tcga_immune_discovery; step: s01
+# Inputs (DCF fields): processed_data
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task tcga_immune_discovery --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
 
 options(stringsAsFactors = FALSE)
 usage <- function() {

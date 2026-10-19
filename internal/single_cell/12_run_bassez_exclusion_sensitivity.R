@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# Base-R metadata checks precede dependency loading and study reads.
+# Purpose: Evaluate the reported Bassez-exclusion and marker sensitivity results.
+# Task: bassez_sensitivity; step: s12
+# Inputs (DCF fields): cell_metadata,sample_metadata,sample_labels,sample_compartment_counts,sample_sheet,counts_manifest,model_contract,definition_genes,program_scores,program_catalog,formal_centers,formal_pathway_evidence,fig6_pathway_source,gmt_hallmark,gmt_reactome,gmt_gobp,counts_dir,sample_sets_dir
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task bassez_sensitivity --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 12_run_bassez_exclusion_sensitivity.R --config PATH [--check-config]\n       Rscript 12_run_bassez_exclusion_sensitivity.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

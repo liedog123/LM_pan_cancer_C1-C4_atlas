@@ -1,5 +1,10 @@
 #!/usr/bin/env Rscript
-# Continue study-specific LM12 construction from formal intermediate results.
+# Purpose: Construct the adopted twelve immune pathway definitions from cross-cancer evidence.
+# Task: lm12_definition; step: s02
+# Inputs (DCF fields): all_votes,gene_summary,gene_long,candidate_terms,family_dictionary
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task lm12_definition --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
 
 options(stringsAsFactors = FALSE)
 usage <- function() {

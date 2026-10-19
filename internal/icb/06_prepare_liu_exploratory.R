@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# Base-R metadata checks precede dependency loading and study reads.
+# Purpose: Evaluate the separate post hoc Liu ICB and timing-sensitivity comparisons.
+# Task: liu_icb; step: s06
+# Inputs (DCF fields): source_rda,official_s2_tpm,clinical_workbook,gene_alias,lm12_members,program_membership
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task liu_icb --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 06_prepare_liu_exploratory.R --config PATH [--check-config]\n       Rscript 06_prepare_liu_exploratory.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

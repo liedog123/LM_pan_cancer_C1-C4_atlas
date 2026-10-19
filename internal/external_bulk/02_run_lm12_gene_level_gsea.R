@@ -1,5 +1,10 @@
 #!/usr/bin/env Rscript
-# Continue cohort-specific external Acid-linked LM12 direction validation.
+# Purpose: Score external bulk cohorts and test the fixed LM12 pathway enrichment.
+# Task: external_bulk_enrichment; step: s02
+# Inputs (DCF fields): expression_dir,score_dir,lm12_manifest,lm12_genes
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task external_bulk_enrichment --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
 
 options(stringsAsFactors = FALSE)
 usage <- function() {

@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# Base-R metadata checks precede dependency loading and study reads.
+# Purpose: Prepare and test state-adjusted programme-feature associations within cancers.
+# Task: programme_feature_associations; step: s06
+# Inputs (DCF fields): numeric_manifest,bundle_dir,program_clusters
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task programme_feature_associations --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 06_run_programme_feature_associations.R --config PATH [--check-config]\n       Rscript 06_run_programme_feature_associations.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

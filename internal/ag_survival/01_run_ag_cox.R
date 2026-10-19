@@ -1,5 +1,10 @@
 #!/usr/bin/env Rscript
-# Continue source AG1 versus AG3 overall-survival analyses from prepared inputs.
+# Purpose: Reproduce AG1-versus-AG3 survival inputs, Cox models and formal KM source data.
+# Task: ag_survival; step: s01
+# Inputs (DCF fields): projects_data,survival_data
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task ag_survival --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
 
 options(stringsAsFactors = FALSE, warn = 1)
 usage <- function() {

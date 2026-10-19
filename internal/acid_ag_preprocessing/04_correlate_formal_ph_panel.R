@@ -1,5 +1,10 @@
 #!/usr/bin/env Rscript
-# 固定正式12成员，接既有九基因评分计算逐癌Spearman相关。
+# Purpose: Compare Acid_Score with the fixed pH-related transcript panel.
+# Task: acid_ph_correlations; step: s04
+# Inputs (DCF fields): acid_scores,tpm_root
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task acid_ph_correlations --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
 
 options(stringsAsFactors = FALSE)
 usage <- function() {

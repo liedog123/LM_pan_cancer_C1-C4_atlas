@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# 路径元信息检查先于研究输入读取与分析依赖加载。
+# Purpose: Compare mutation burden and MSI measures using the adopted eligibility rules.
+# Task: tmb_msi; step: s02
+# Inputs (DCF fields): readiness_dir
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task tmb_msi --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 02_run_tmb_msi_c1c4.R --config PATH [--check-config]\n       Rscript 02_run_tmb_msi_c1c4.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

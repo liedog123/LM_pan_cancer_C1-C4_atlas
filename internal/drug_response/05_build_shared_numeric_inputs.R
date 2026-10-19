@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# Base-R metadata checks precede dependency loading and study reads.
+# Purpose: Prepare and test state-adjusted programme-feature associations within cancers.
+# Task: programme_feature_associations; step: s05
+# Inputs (DCF fields): patient,pilot,mrna,definition,program_genes,program_clusters,rppa,rppa_dict,tcpa,tmb,mutation,cnv,estimate,cibersort,mcpcounter,drug
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task programme_feature_associations --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 05_build_shared_numeric_inputs.R --config PATH [--check-config]\n       Rscript 05_build_shared_numeric_inputs.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

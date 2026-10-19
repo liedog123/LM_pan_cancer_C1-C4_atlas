@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# Base-R metadata checks precede dependency loading and study reads.
+# Purpose: Assign pretreatment states and evaluate ICB outcomes in Riaz, Gide and Braun.
+# Task: icb_three_cohort; step: s03
+# Inputs (DCF fields): official_workbook,lm12_members,program_membership,gene_alias,local_clinical_crosswalk
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task icb_three_cohort --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 03_prepare_braun_official.R --config PATH [--check-config]\n       Rscript 03_prepare_braun_official.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

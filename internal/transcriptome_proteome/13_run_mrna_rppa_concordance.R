@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# 路径元信息检查先于研究输入读取与分析依赖加载。
+# Purpose: Summarise reported RNA-protein concordance and discordance.
+# Task: mrna_rppa_concordance; step: s13
+# Inputs (DCF fields): mrna_model_dir,mrna_recurrence,mrna_display,rppa_within,rppa_recurrence,rppa_display,cancer_gate,antibody_dictionary
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task mrna_rppa_concordance --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 13_run_mrna_rppa_concordance.R --config PATH [--check-config]\n       Rscript 13_run_mrna_rppa_concordance.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

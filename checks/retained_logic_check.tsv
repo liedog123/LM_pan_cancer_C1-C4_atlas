@@ -1,0 +1,11 @@
+check	pass
+prism_secondary_drugs_<-	TRUE
+prism_normalize_drug_<-	TRUE
+prism_sha_lines_<-	TRUE
+prism_gdsc_target_<-	TRUE
+shared_axis_complete_18_cancer_three_drug_block	TRUE
+shared_axis_cliffs_delta	TRUE
+survival_survival_data	TRUE
+survival_survival_data	TRUE
+survival_survival_data_list[[project]]	TRUE
+"survival_save(survival_data_list,_file_=_file.path(out_dir,_""tow_group_clinical_data_list.rdata""))"	TRUE

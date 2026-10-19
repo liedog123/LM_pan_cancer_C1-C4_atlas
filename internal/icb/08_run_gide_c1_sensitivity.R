@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# Base-R metadata checks precede dependency loading and study reads.
+# Purpose: Evaluate the exploratory within-C1 Gide programme-response associations.
+# Task: gide_c1; step: s08
+# Inputs (DCF fields): patient_scores,frozen_program_members,lm12_members
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task gide_c1 --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 08_run_gide_c1_sensitivity.R --config PATH [--check-config]\n       Rscript 08_run_gide_c1_sensitivity.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

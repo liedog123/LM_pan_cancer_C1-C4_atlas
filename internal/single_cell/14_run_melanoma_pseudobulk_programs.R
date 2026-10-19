@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# Base-R metadata checks precede dependency loading and study reads.
+# Purpose: Fit melanoma patient-level pseudobulk comparisons and programme enrichment.
+# Task: melanoma_pseudobulk; step: s14
+# Inputs (DCF fields): contract,stage3_gate,source_object,frozen_cell_metadata,sample_labels,readiness,catalog,membership_full,membership_nondefinition
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task melanoma_pseudobulk --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 14_run_melanoma_pseudobulk_programs.R --config PATH [--check-config]\n       Rscript 14_run_melanoma_pseudobulk_programs.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

@@ -1,35 +1,30 @@
 # C1-C4 atlas analysis code
 
-Explore lactate-associated transcription and inflammatory remodelling through the paper's analysis routes.
+Code for the lactate-associated transcriptional atlas described in the manuscript. Start with the figure or supplementary table below; only run the corresponding tasks and their required producers.
 
-One dispatcher exposes 36 task configurations: 23 core analyses, 3 definition-construction tasks, 9 supporting analyses and 1 CD8 figure/table task. Ninety retained implementations are internal steps; their scientific code has not been refactored.
-
-This code-only release provides the task interface below. Interface checks are recorded in [checks](checks/README.md); study-data numerical reproduction has not been performed.
-
-| Paper result | Tasks |
+| Paper results | Analysis route |
 |---|---|
-| Fig. 1 | acid_ag_groups, acid_ph_correlations, acid_distributions, ag_survival |
-| Fig. 2 | c1c4_state_assignment, external_bulk_enrichment, c1c4_clinical, immune_ecology |
-| Fig. 3 | mrna_programmes, lncrna_rppa, boundary_gsea |
-| Fig. 4 | somatic_mutations, tmb_msi, cnv_burden, cnv_regions |
-| Fig. 5 | predicted_drug_response, programme_feature_associations |
-| Fig. 6 | single_cell_states, single_cell_pseudobulk, melanoma_pseudobulk, icb_three_cohort |
-| Fig. 7 | cd8_qc, cd8_response, cd8_figures |
+| Fig. 1 and Supplementary Table 1 | Signature selection, Acid_Score, AG grouping and survival |
+| Fig. 2 and Supplementary Table 2 | LM12 construction, C1-C4 labels, clinical and immune comparisons |
+| Fig. 3 and Supplementary Table 3 | mRNA, lncRNA, RPPA, adjacent states and subtype adjustment |
+| Fig. 4 and Supplementary Table 4 | Somatic mutation, TMB/MSI and copy number |
+| Fig. 5 and Supplementary Table 5 | Drug comparisons, PRISM concordance and programme-feature associations |
+| Fig. 6, ICB and Supplementary Table 6 | Single-cell states, pseudobulk, reported sensitivities and ICB |
+| Fig. 7 and Supplementary Table 7 | CD8 treatment-time models and figure source tables |
 
-Task coverage follows the retained implementation routes and is broader than the current manuscript. Bassez CellChat and internal drug-model performance results are outside the submitted manuscript and supplements. The drug_crossplatform route retains its preparation dependency for the PRISM step; consult task usage when starting from matching prepared inputs. Definition construction can be skipped when starting downstream from adopted frozen definitions.
+See [reproduction routes](docs/reproduction_routes.md) for task IDs, execution boundaries and output descriptions. The [scope register](docs/manuscript_scope.tsv) records why each retained task is needed. The package has 35 task configurations and 86 implementation scripts (87 step records because E1/E3 share an implementation); script count reflects separate analysis steps, not 86 independent workflows.
 
 ```sh
 Rscript run.R --list
 Rscript run.R --task cd8_response --plan
-Rscript run.R --task cd8_response --config /path/to/cd8_response.dcf --steps s02 --check-config
-Rscript run.R --task cd8_response --config /path/to/cd8_response.dcf
+# Copy a task DCF outside this checkout and replace SET_ME paths before execution.
+Rscript run.R --task cd8_response --config /path/to/my_task.dcf --steps s02 --check-config
 ```
 
-Obtain matching inputs and edit a copied task configuration first. Example placeholders are not delivered data. Use a new output root outside this package. There is no repository-wide run-all command.
+Use [task usage](docs/task_usage.md), [task index](docs/task_index.tsv), [step index](docs/step_index.tsv) and [software requirements](docs/software_requirements.md). Every implementation begins with its purpose, task/step, input fields, output boundary and usage. Existing methodological comments are retained.
 
-See [usage](docs/task_usage.md), [input delivery](docs/input_delivery.md), [task index](docs/task_index.tsv) and [step mapping](docs/step_index.tsv).
-The existing [result mapping](https://github.com/liedog123/LM_pan_cancer_C1-C4_atlas/tree/7fc95d5e205c7dfced0ffdfa4b17945bf62d13e5/docs/result_output_mapping.md) and [environment evidence](https://github.com/liedog123/LM_pan_cancer_C1-C4_atlas/tree/7fc95d5e205c7dfced0ffdfa4b17945bf62d13e5/environment/README.md) remain the provenance sources.
+The repository starts from the analysis inputs specified in each DCF. It is not a raw-data-to-figure pipeline: upstream raw-data/QC preparation, original oncoPredict training/prediction and GLDS correction are not included. The [input guide](docs/input_delivery.md) distinguishes study matrices from definitions and reported results in the seven supplementary workbooks. CD8 deposition is pending ethics approval; use the accession in the manuscript when available.
 
-MIT applies to the code. Supplementary tables provide study definitions, memberships and reported results; see the [supplementary content map](docs/supplementary_inputs.tsv). Obtain study data through the sources specified in the manuscript and set the required paths in a copied task configuration.
+[Checks](checks/README.md) cover source preservation, syntax, task wiring and metadata-only safety; no study-data numerical reproduction was performed during this update. Run `Rscript checks/run_checks.R /path/to/new/check_report.tsv` to repeat the interface checks without loading study data.
 
-Last updated: 2026-10-19
+MIT applies to the code. Third-party datasets and gene-set resources retain their own access and licensing terms. Historical commits remain available; the current branch contains the analysis scope mapped above.

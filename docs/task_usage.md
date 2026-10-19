@@ -1,29 +1,19 @@
 # Task usage
 
-`--list` lists the tasks. `--task ID --plan` validates structure and prints selected scripts, output paths and placeholders. It creates no outputs and does not read study contents.
+`Rscript run.R --list` lists the 35 tasks. `--task ID --plan` validates a task configuration and prints selected scripts, output paths and unresolved placeholders without reading study contents or creating outputs.
 
-`--steps sNN,sMM` selects steps in configuration order. Matching prepared intermediates may replace skipped producers. Other tasks and absent prepared inputs are not auto-generated.
+Copy the task DCF outside this checkout, replace `SET_ME` input and output paths, then use `--config /path/to/my_task.dcf`. `--steps sNN,sMM` selects steps in configuration order. Matching prepared intermediates may replace skipped producers; other tasks and absent prepared inputs are not auto-generated.
 
-`--check-config` invokes each selected implementation's metadata-only checks. Producer outputs must already exist. A downstream metadata failure before its producer runs is expected; select the first step or supply matching existing intermediates.
+`--check-config` invokes each selected implementation's metadata-only checks. Producer outputs must already exist for downstream checks. Select the first step or provide matching existing intermediates when checking a continuation.
 
-Ordinary execution checks and runs each selected step in a separate Rscript process, stopping at the first failure. Original guards and analysis bodies remain in force. Each step has a distinct output directory. Logs record STARTED and COMPLETED; STARTED does not mean completion.
+Ordinary execution checks and runs each selected step in a separate Rscript process, stopping at the first failure. Each step has an independent output directory. Logs record STARTED and COMPLETED; STARTED alone does not establish completion. Existing nonempty outputs are protected.
 
-The first DCF record contains Task, Layer and Output-Root plus Input-* shared values. Subsequent records contain Step, Script and exact retained fields. Task configs support comments beginning with #; generated child DCFs contain only valid fields.
+The first DCF record contains Task, Layer and Output-Root plus Input-* shared values. Later records contain Step, Script and the exact fields in [step_index.tsv](step_index.tsv). DCF comments begin with #. `@input/name` uses Input-name; `@root/task/step` resolves under Output-Root; `@sNN/file` resolves under that producer's output_dir. Relative paths resolve from the task config directory. Child configs use absolute paths. `edge_id` is a scalar; other retained fields are paths.
 
-`@input/name` uses Input-name. `@root/task/step` resolves under Output-Root. `@sNN/file` resolves under that step's output_dir. Replace a producer reference with a matching existing path when continuing from a prepared intermediate. Relative paths resolve from the task config directory; child configs use absolute paths.
+E1 and E3 use separate records and output directories through the same implementation. Definition-construction tasks may be skipped when using the adopted definitions. Independent Acid distributions, CNV modes, Bassez sensitivities and signature correlations are not automatically chained.
 
-`edge_id` is a scalar; other retained fields are paths. E1 and E3 use separate records/output roots through the same retained implementation. E2 remains independent. Statistical families and supplied P/FDR are preserved.
+The PRISM task now contains only s03 and requires three platform inputs; old task DCFs containing internal-support fields must be replaced with the current template. Shared-axis adjustment now takes only the complete drug results, shared-patient manifest, prediction audit and prediction directory. Survival s00 prepares the original group-selected object without intermediate preview plots; the formal survival steps remain.
 
-Independent Acid distributions, CNV burden modes, Bassez sensitivities and signature correlations are not chained. The lncRNA/RPPA task retains separate branches after shared preparation. The retained CellChat branch keeps rep1 and its distinct rep2-10 seeds; it is outside the current manuscript and submitted supplements.
+The CD8 export task also generates reported quadrant and trajectory source tables. Use its matching prepared metadata and expression inputs; it is not only a cosmetic plotting step. Final manuscript composite assembly is maintained with the manuscript.
 
-CD8 figures use the same Output-Root convention as cd8_qc/cd8_response, or explicit prepared paths. Hypoxia trajectory and audited sample metadata remain separately prepared inputs. Descriptive table generation stays with figures and is required for complete paper reproduction.
-
-Structural/source inspection does not establish real-data compatibility or equality to frozen results.
-
-## Existing users
-
-The previous numbered workflows and their 90 DCF examples remain available at commit 7fc95d5. This release uses one dispatcher and 36 task DCFs; legacy DCFs are not task configs. Copy the matching task template and transfer the exact input paths. Retained implementations are mapped in step_index.tsv. Use independent new output directories; matching frozen intermediates can replace earlier producers.
-
-## Manuscript scope
-
-Internal drug-model performance is not a reported result in the current manuscript. The drug_crossplatform task retains s02 because s03 reads its preparation outputs. To run s03 from existing preparations, supply matching paths for internal_support_summary and drug_identity in a copied task configuration and select --steps s03. Keep this dependency when running the original route; the submitted PRISM comparisons are mapped to Supplementary Table 5.
+The [reproduction routes](reproduction_routes.md) map tasks to the paper and state their starting boundaries. Structural/source checks do not establish numerical equality to frozen study results. Earlier interfaces remain in Git history; public history is not rewritten.

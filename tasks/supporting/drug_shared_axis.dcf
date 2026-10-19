@@ -1,23 +1,12 @@
+# Leave-one-drug-out PC1 adjustment for the three reported drugs.
 Task: drug_shared_axis
 Layer: supporting
 Output-Root: SET_ME_NEW_OUTPUT_ROOT
 
 Step: s04
-Script: drug_response/04_run_shared_axis_sensitivity.R
-phase1_matches: SET_ME/phase1_matches.tsv
-phase1_context: SET_ME/phase1_context.tsv
-drug_complete: SET_ME/drug_complete.tsv
-drug_final_grade: SET_ME/drug_final_grade.tsv
-shared_patient: SET_ME/shared_patient.tsv
-shared_cancer: SET_ME/shared_cancer.tsv
-prediction_audit: SET_ME/prediction_audit.tsv
-mrna: SET_ME/mrna.tsv
-rppa: SET_ME/rppa.tsv
-mutation: SET_ME/mutation.tsv
-tmb: SET_ME/tmb.tsv
-mantis: SET_ME/mantis.tsv
-msi: SET_ME/msi.tsv
-cnv_burden: SET_ME/cnv_burden.tsv
-cnv_highlevel: SET_ME/cnv_highlevel.tsv
-prediction_dir: SET_ME/prediction_dir
+Script: drug_response/04_run_shared_axis_adjustment.R
+drug_complete: SET_ME/drug_c1_vs_c4_by_cancer_complete.tsv
+shared_patient: SET_ME/shared_C1C4_patient_manifest.tsv
+prediction_audit: SET_ME/drug_prediction_input_audit.tsv
+prediction_dir: SET_ME/corrected_predictions
 output_dir: @root/drug_shared_axis/s04

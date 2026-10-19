@@ -4,7 +4,7 @@ Output-Root: SET_ME_NEW_OUTPUT_ROOT
 Input-projects_data: SET_ME/projects.rdata
 
 Step: s00
-Script: ag_survival/00_prepare_ag_km.R
+Script: ag_survival/00_prepare_ag_survival_inputs.R
 projects_data: @input/projects_data
 clinical_groups: SET_ME/clinical_data_cluster_list.rdata
 output_dir: @root/ag_survival/s00

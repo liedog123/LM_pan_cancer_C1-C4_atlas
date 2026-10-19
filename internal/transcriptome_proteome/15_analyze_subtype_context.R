@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# 路径元信息检查先于研究输入读取与分析依赖加载。
+# Purpose: Assess programme differences after immune-subtype and BRCA PAM50 adjustment.
+# Task: subtype_context; step: s15
+# Inputs (DCF fields): patient_mapping,programme_scores
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task subtype_context --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 15_analyze_subtype_context.R --config PATH [--check-config]\n       Rscript 15_analyze_subtype_context.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

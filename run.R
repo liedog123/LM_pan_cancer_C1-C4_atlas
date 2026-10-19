@@ -1,5 +1,9 @@
 #!/usr/bin/env Rscript
-# 统一任务入口；每个统计步骤在独立 R 进程执行，保留原检验范围与随机种子。
+# Purpose: Dispatch manuscript-mapped analysis tasks in isolated R processes.
+# Inputs: task DCFs and the study inputs configured for each selected step.
+# Outputs: independent step directories and execution logs under Output-Root.
+# Usage: Rscript run.R --list; see docs/task_usage.md.
+# 任务调度保持原进程隔离，不修改统计范围、随机种子或输入文件。
 options(stringsAsFactors = FALSE, warn = 1)
 die <- function(...) stop(..., call. = FALSE)
 usage <- function() cat(
@@ -9,7 +13,7 @@ usage <- function() cat(
 "--plan validates task structure and prints paths without reading study contents or creating outputs.\n",
 "--check-config invokes only the retained step metadata checks; downstream outputs must already exist.\n",
 "Ordinary invocation runs selected steps in configuration order. Existing matching intermediates may be supplied.\n",
-"References are obtained from the paper's supplementary materials, not bundled here.\n", sep="")
+"Input definitions and acquisition boundaries are documented in docs/reproduction_routes.md.\n", sep="")
 argv <- commandArgs(trailingOnly=TRUE)
 if(identical(argv,"--help")) {usage();quit(status=0L)}
 full <- commandArgs(trailingOnly=FALSE)

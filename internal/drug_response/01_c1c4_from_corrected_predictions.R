@@ -1,4 +1,10 @@
 #!/usr/bin/env Rscript
+# Purpose: Compare prepared GLDS-corrected predictions between C1 and C4.
+# Task: predicted_drug_response; step: s01
+# Inputs (DCF fields): canonical_labels,model_input,prediction_dir,drug_annotation
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task predicted_drug_response --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
 
 options(stringsAsFactors = FALSE, warn = 1)
 

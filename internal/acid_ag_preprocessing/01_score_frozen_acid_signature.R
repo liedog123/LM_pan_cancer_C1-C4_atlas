@@ -1,5 +1,10 @@
 #!/usr/bin/env Rscript
-# Continue acid scoring, AG grouping or processed-input export from fixed study inputs.
+# Purpose: Score the fixed signature and construct ordered acidification groups and downstream inputs.
+# Task: acid_ag_groups; step: s01
+# Inputs (DCF fields): final_genes,clinical_table,tpm_root
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task acid_ag_groups --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
 
 options(stringsAsFactors = FALSE)
 usage <- function() {

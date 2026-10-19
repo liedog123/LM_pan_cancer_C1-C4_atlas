@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# Base-R metadata checks precede dependency loading and study reads.
+# Purpose: Fit donor-adjusted CD8 treatment-time responses and fixed programme enrichment.
+# Task: cd8_response; step: s04
+# Inputs (DCF fields): count_rdata,lm12_membership,msigdb_dir,bulk_de_dir,bridge_dir
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task cd8_response --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 04_hcl_control_phenotype.R --config PATH [--check-config]\n       Rscript 04_hcl_control_phenotype.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

@@ -1,5 +1,10 @@
 #!/usr/bin/env Rscript
-# Compute final-nine correlations from existing study intermediates.
+# Purpose: Calculate the reported tumour-programme and within-signature gene correlations.
+# Task: signature_correlations; step: s02
+# Inputs (DCF fields): final_genes,tumor_scores,tpm_root
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task signature_correlations --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
 
 options(stringsAsFactors = FALSE, warn = 1)
 usage <- function() {

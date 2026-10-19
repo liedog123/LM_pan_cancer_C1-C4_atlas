@@ -1,6 +1,5 @@
 # acid_ag_preprocessing
 
-Purpose: retained internal computations for the task dispatcher.
-Inputs: matching study-prepared objects and separately supplied references.
-Status: unchanged implementations copied from code-only 7fc95d5; no new study analysis.
-Last updated: 2026-10-13
+Tasks: `acid_ag_groups`, `acid_distributions`, `acid_ph_correlations`.
+
+See the [reproduction routes](../../docs/reproduction_routes.md), [step input fields](../../docs/step_index.tsv) and [software dependencies](../../docs/software_dependencies.tsv). Files begin with a common purpose/input/output/usage header; methodological comments and retained scientific bodies follow it. Scientific-source changes are recorded in [source scope checks](../../checks/source_scope_check.tsv).

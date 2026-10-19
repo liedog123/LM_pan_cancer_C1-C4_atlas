@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# Base-R metadata checks precede dependency loading and study reads.
+# Purpose: Export the reported CD8 figure source tables and component plots.
+# Task: cd8_figures; step: s10
+# Inputs (DCF fields): trajectory_source_file,leading_edge_file
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task cd8_figures --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 10_plot_hypoxia_leading_edge_gene_trajectory.R --config PATH [--check-config]\n       Rscript 10_plot_hypoxia_leading_edge_gene_trajectory.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

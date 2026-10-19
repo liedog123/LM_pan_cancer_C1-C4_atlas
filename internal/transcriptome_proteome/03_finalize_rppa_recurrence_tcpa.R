@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# 路径元信息检查先于研究输入读取与分析依赖加载。
+# Purpose: Fit lncRNA and RPPA comparisons and derive recurrent features and linked functions.
+# Task: lncrna_rppa; step: s03
+# Inputs (DCF fields): model_dir,antibody_dictionary,tcpa_table13
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task lncrna_rppa --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 03_finalize_rppa_recurrence_tcpa.R --config PATH [--check-config]\n       Rscript 03_finalize_rppa_recurrence_tcpa.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

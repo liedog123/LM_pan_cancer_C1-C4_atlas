@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# 路径元信息检查先于研究输入读取与分析依赖加载。
+# Purpose: Fit lncRNA and RPPA comparisons and derive recurrent features and linked functions.
+# Task: lncrna_rppa; step: s06
+# Inputs (DCF fields): patient_manifest,lncrna_registry,recurrent_candidates,mrna_rdata,lncrna_dir
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task lncrna_rppa --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 06_run_lncrna_gene_coexpression.R --config PATH [--check-config]\n       Rscript 06_run_lncrna_gene_coexpression.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

@@ -36,8 +36,6 @@ boundary_gsea	s12	e2_dir	@s10/results
 boundary_gsea	s12	e3_dir	@s11_E3/results/edges/E3
 subtype_context	s15	patient_mapping	@s14/01_subtype_context_preparation/A_patient_inclusion_and_subtype_mapping.tsv
 subtype_context	s15	programme_scores	@s14/01_subtype_context_preparation/A_patient_programme_scores.tsv
-drug_crossplatform	s03	internal_support_summary	@s02/gdsc_internal_oof_performance_summary.tsv
-drug_crossplatform	s03	drug_identity	@s02/top_drug_identity_gdsc.tsv
 programme_feature_associations	s06	numeric_manifest	@s05/stage1_numeric_bundle_manifest.tsv
 programme_feature_associations	s06	bundle_dir	@s05/bundles
 single_cell_states	s05	initial_bundle	@s04/initial_scoring_bundle.rds
@@ -75,9 +73,6 @@ single_cell_pseudobulk	s11	primary_gene_results_dir	@s08/gene_results
 melanoma_pseudobulk	s15	sample_sheet	@s14/melanoma_pseudobulk_sample_sheet.tsv
 melanoma_pseudobulk	s15	counts_manifest	@s14/melanoma_pseudobulk_counts_manifest.tsv
 melanoma_pseudobulk	s15	counts_dir	@s14/counts
-bassez_cellchat	s17	balanced_cell_manifest	@s16/balanced_cell_manifest_30rep.tsv.gz
-bassez_cellchat	s18	balanced_cell_manifest	@s16/balanced_cell_manifest_30rep.tsv.gz
-bassez_cellchat	s18	rep1_objects_dir	@s17/objects
 icb_three_cohort	s02	patient_scores	@s01/B_baseline_patient_inclusion_and_scores.tsv
 icb_three_cohort	s04	patient_scores	@s03/B_Braun_patient_inclusion_and_scores.tsv
 icb_three_cohort	s04	member_coverage	@s03/B_Braun_member_coverage.tsv

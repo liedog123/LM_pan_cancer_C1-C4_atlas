@@ -1,5 +1,11 @@
 #!/usr/bin/env Rscript
-# Base-R metadata checks precede dependency loading and study reads.
+# Purpose: Export the reported CD8 figure source tables and component plots.
+# Task: cd8_figures; step: s06
+# Inputs (DCF fields): bulk_de_dir
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task cd8_figures --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
+
 usage <- function() cat("Usage: Rscript 06_plot_hcl_temporal_quadrant.R --config PATH [--check-config]\n       Rscript 06_plot_hcl_temporal_quadrant.R --help\nDCF-relative paths; metadata checks create no outputs.\n")
 args <- commandArgs(trailingOnly = TRUE)
 if (identical(args, "--help")) { usage(); quit(status = 0L) }

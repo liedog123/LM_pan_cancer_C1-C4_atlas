@@ -1,5 +1,10 @@
 #!/usr/bin/env Rscript
-# Continue the study-specific all-sample signature selection from existing intermediates.
+# Purpose: Select the nine-gene lactate-associated signature using the adopted multi-cancer filters.
+# Task: acid_signature_selection; step: s01
+# Inputs (DCF fields): candidate_genes,deg_results,tumor_scores,tpm_root
+# Outputs: new files under output_dir; source inputs are read-only.
+# Usage: Rscript run.R --task acid_signature_selection --config /path/to/task.dcf
+# Details: docs/reproduction_routes.md, docs/step_index.tsv and docs/software_requirements.md.
 
 options(stringsAsFactors = FALSE, warn = 1)
 usage <- function() {
