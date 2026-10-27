@@ -1,0 +1,21 @@
+{
+  "title": "Pan-cancer C1–C4 lactate-associated state atlas: analysis code",
+  "description": "Analysis code supporting the C1–C4 atlas of lactate-associated transcription and inflammatory remodelling across human cancers. The release starts from matching prepared inputs and includes state definitions, clinical and molecular comparisons, drug-response associations, single-cell and ICB analyses, and CD8 perturbation analyses. Research data and original sequencing preprocessing are not included.",
+  "creators": [
+    {
+      "name": "Xu, Wenqiang",
+      "affiliation": "Chongqing Key Laboratory of Tumor Immune Regulation and Immune Intervention, Chongqing Medical University, Chongqing, China; Department of Immunology, School of Basic Medical Sciences, Chongqing Medical University, Chongqing, China"
+    }
+  ],
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "mit",
+  "language": "eng",
+  "keywords": [
+    "pan-cancer",
+    "lactate",
+    "transcriptomics",
+    "tumour microenvironment",
+    "R"
+  ]
+}
